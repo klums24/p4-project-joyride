@@ -40,6 +40,9 @@ class Cars(Resource):
         def get(self):
             cars =[c.to_dict() for c in Car.query.all()]
             return make_response(cars, 200)
+        
+        def patch(self):
+            pass
 
 api.add_resource(Car, '/cars')
 
@@ -65,6 +68,9 @@ class Drivers(Resource):
     def get(self):
         drivers = [d.to_dict() for d in Driver.query.all()]
         return make_response(drivers, 200)
+    
+    def patch(self):
+        pass
     
 api.add_resource(Driver, '/drivers')
     
