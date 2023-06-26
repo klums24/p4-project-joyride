@@ -44,7 +44,7 @@ class Cars(Resource):
         def patch(self):
             pass
 
-api.add_resource(Car, '/cars')
+api.add_resource(Cars, '/cars')
 
 class CarById(Resource):
     def get(self, id):
@@ -72,7 +72,7 @@ class Drivers(Resource):
     def patch(self):
         pass
     
-api.add_resource(Driver, '/drivers')
+api.add_resource(Drivers, '/drivers')
     
 class DriverById(Resource):
     def get(self, id):
@@ -89,7 +89,7 @@ class DriverById(Resource):
             return make_response(({}),204)
         except Exception as e:
             return make_response(({"error": "404: Driver not found."}),404)
-api.add_resource(Driver, '/drivers/<int:id>')
+api.add_resource(DriverById, '/drivers/<int:id>')
 
 class Drives(Resource):
     def get(self):
@@ -107,4 +107,4 @@ class Drives(Resource):
         except Exception as e:
             return make_response(({"error": str(e)}),400)
         
-    api.add_resource(Drive, '/drives')
+api.add_resource(Drives, '/drives')

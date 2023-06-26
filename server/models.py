@@ -34,8 +34,8 @@ class Car(db.Model, SerializerMixin):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
     
-    drives = db.relationship('drives', back_populates='car')
-    drivers = association_proxy('Drives', 'driver')
+    drives = db.relationship('Drive', back_populates='car')
+    drivers = association_proxy('Drive', 'driver')
     
     
     # serialize_only = ('id','make','model', 'trim', 'mileage', 'picture')
@@ -94,7 +94,7 @@ class Driver(db.Model, SerializerMixin):
     
     
     drives = db.relationship('Drive', back_populates='driver')
-    cars = association_proxy('drives','car')              
+    cars = association_proxy('Drives','car')              
     
     serialize_rules = ('-cars', '-drives')
     
