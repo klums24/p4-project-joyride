@@ -15,27 +15,13 @@ from models import Driver, Drive, Car
 
 # Views go here!
 
-if __name__ == '__main__':
-    app.run(port=5555, debug=True)
 
-BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-DATABASE = os.environ.get(
-    "DB_URI", f"sqlite:///{os.path.join(BASE_DIR, 'app.db')}")
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.json.compact = False
-
-migrate = Migrate(app, db)
-
-db.init_app(app)
 
 @app.route('/')
 def index():
     return '<h1>JoyRide!</h1>'
 
-api=Api(app)
 class Cars(Resource):
         def get(self):
             cars =[c.to_dict() for c in Car.query.all()]
@@ -108,3 +94,9 @@ class Drives(Resource):
             return make_response(({"error": str(e)}),400)
         
 api.add_resource(Drives, '/drives')
+
+
+
+
+if __name__ == '__main__':
+    app.run(port=5555, debug=True)
