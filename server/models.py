@@ -69,15 +69,23 @@ class Drive(db.Model, SerializerMixin):
 
     @validates('mileage')
     def validate_make(self, key, new_mileage):
-        if not new_mileage and not [int, float] or 1 <= new_mileage <=3501:
+        if not new_mileage or type(new_mileage) not in [int, float] or not 1 < new_mileage < 50000:
             raise ValueError('Invalid trip mileage entered: must be between 1 and 3500 miles')
         return new_mileage
+    
     @validates('start_point')
     def validate_start_point(self, key, start_point):
-        pass
+        if not start_point or type(start_point) not in [str]:
+            raise ValueError("Start point must be a string")
+        return start_point
+
     @validates('end_point')
     def validate_end_point(self, key, end_point):
-        pass
+        if not end_point or type(end_point) not in [str]:
+            raise ValueError("End point must be a string")
+        return end_point
+
+
 class Driver(db.Model, SerializerMixin):
     __tablename__ = 'drivers'
     
