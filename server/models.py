@@ -43,7 +43,7 @@ class Car(db.Model, SerializerMixin):
     
     @validates('mileage')
     def validate_make(self, key, new_mileage):
-        if new_mileage not in type(int) or new_mileage not in range[1, 250001]:
+        if not new_mileage or not 1 <= new_mileage <=250000:
             raise ValueError('Invalid mileage entered: must be between 1 and 250000 miles')
         return new_mileage
 
@@ -69,7 +69,7 @@ class Drive(db.Model, SerializerMixin):
 
     @validates('mileage')
     def validate_make(self, key, new_mileage):
-        if new_mileage not in type(int) or new_mileage not in range[1, 3501]:
+        if not new_mileage and not [int, float] or 1 <= new_mileage <=3501:
             raise ValueError('Invalid trip mileage entered: must be between 1 and 3500 miles')
         return new_mileage
     @validates('start_point')
@@ -114,13 +114,13 @@ class Driver(db.Model, SerializerMixin):
 
     @validates('user_name')
     def validate_user_name(self, key, user_name):
-        if not user_name or not 2 < len(user_name) <13:
+        if not user_name or not 2 < len(user_name) <50:
           raise ValueError(' Your user name must be between 2 and 13 characters long')
         return user_name
 
     @validates('age')
     def validate_age(self, key, new_age):
-        if new_age not in type(int) or not range[16, 101]:
+        if not new_age or not 16 <= new_age <= 101:
           raise ValueError(' Your age must be between 16 and 100 years old to join')
         return new_age
 

@@ -18,7 +18,7 @@ def create_cars():
             model=randint(1990, 2023),
             year=randint(1990, 2023),
             trim=fake.word(),
-            mileage=randint(1, 250000),
+            mileage=randint(1, 50),
             picture=fake.image_url(),
             for_sale=fake.boolean(),
         )
@@ -79,6 +79,6 @@ if __name__ == '__main__':
         drives = create_drives(cars, drivers)
         db.session.add_all(drives)
         db.session.commit()
-        
+        print('complete')
         
         
