@@ -19,8 +19,8 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 
 # Local imports
-from config import app, db, api
-from models import Driver, Drive, Car
+from config import app, api
+from models import Driver, Drive, Car, db
 
 # Views go here!
 
@@ -61,12 +61,14 @@ def index():
     return '<h1>JoyRide!</h1>'
 
 api=Api(app)
+
+
 class Cars(Resource):
         def get(self):
             cars =[c.to_dict() for c in Car.query.all()]
             return make_response(cars, 200)
 
-api.add_resource(Car, '/cars')
+api.add_resource(Cars, '/cars')
 
 class CarById(Resource):
     def get(self, id):
@@ -93,7 +95,7 @@ class Drivers(Resource):
             return make_response(drivers, 200)
         return make_response("no drivers found", 404)
     
-api.add_resource(Driver, '/drivers')
+api.add_resource(Drivers, '/drivers')
     
 class DriverById(Resource):
     def get(self, id):
@@ -110,7 +112,7 @@ class DriverById(Resource):
             return make_response(({}),204)
         except Exception as e:
             return make_response(({"error": "404: Driver not found."}),404)
-api.add_resource(Driver, '/drivers/<int:id>')
+api.add_resource(DriverById, '/drivers/<int:id>')
 
 class Drives(Resource):
     def get(self):
@@ -128,4 +130,4 @@ class Drives(Resource):
         except Exception as e:
             return make_response(({"error": str(e)}),400)
         
-    api.add_resource(Drive, '/drives')
+api.add_resource(Drives, '/drives')
