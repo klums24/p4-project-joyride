@@ -88,12 +88,23 @@ class CarById(Resource):
 api.add_resource(CarById, '/cars/<int:id>')
 
 class Drivers(Resource):
+
     def get(self):
         drivers = [d.to_dict() for d in Driver.query.all()]
         if drivers:
             return make_response(drivers, 200)
         return make_response("no drivers found", 404)
     
+    def post(self):
+        try:
+            data = request.get_json()
+            driver = Driver(**data)
+            db.session.add(driver)
+            db.session.commit()
+            return make_response((driver.to_dict()), 201)
+        except Exception as e:
+            return make_response(({"error": str(e)}),400)
+        
 api.add_resource(Drivers, '/drivers')
     
 class DriverById(Resource):

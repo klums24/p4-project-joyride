@@ -39,7 +39,7 @@ const SignUpForm = ({handleNewUser}) => {
       // the new project object has to make it to the page
       // const newProject = {name, about, phase, link, image}
       // the new project has to make it to the json-server
-      fetch('http://localhost:4000/drivers', {
+      fetch('/drivers', {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
