@@ -9,7 +9,7 @@
 # from flask import Flask, request, make_response
 import os
 # from config import app, db, api
-from models import Driver, Drive, Car, db
+
 
 from flask import Flask, request, make_response
 from flask_cors import CORS
@@ -19,13 +19,12 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 
 # Local imports
-from config import app, api
+# from config import app
 from models import Driver, Drive, Car, db
 
 # Views go here!
 
-if __name__ == '__main__':
-    app.run(port=5555, debug=True)
+
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DATABASE = os.environ.get(
@@ -43,12 +42,12 @@ metadata = MetaData(naming_convention={
 # db = SQLAlchemy(metadata=metadata)
 migrate = Migrate(app, db)
 
-
-db.init_app(app)
 api=Api(app)
+db.init_app(app)
+
 
 # Instantiate REST API
-api = Api(app)
+
 
 # Instantiate CORS
 CORS(app)
@@ -60,7 +59,7 @@ CORS(app)
 def index():
     return '<h1>JoyRide!</h1>'
 
-api=Api(app)
+
 
 
 class Cars(Resource):
@@ -131,3 +130,6 @@ class Drives(Resource):
             return make_response(({"error": str(e)}),400)
         
 api.add_resource(Drives, '/drives')
+
+if __name__ == '__main__':
+    app.run(port=5555, debug=True)
