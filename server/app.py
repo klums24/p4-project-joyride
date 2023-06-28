@@ -9,7 +9,7 @@
 # from flask import Flask, request, make_response
 import os
 # from config import app, db, api
-from models import Driver, Drive, Car, db
+
 
 from flask import Flask, request, make_response
 from flask_cors import CORS
@@ -19,7 +19,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 
 # Local imports
-from config import app, api
+# from config import app
 from models import Driver, Drive, Car, db
 
 # Views go here!
@@ -47,7 +47,7 @@ db.init_app(app)
 
 
 # Instantiate REST API
-api = Api(app)
+
 
 # Instantiate CORS
 CORS(app)
@@ -59,7 +59,7 @@ CORS(app)
 def index():
     return '<h1>JoyRide!</h1>'
 
-api=Api(app)
+
 
 
 class Cars(Resource):

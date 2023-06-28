@@ -1,6 +1,6 @@
 from sqlalchemy_serializer import SerializerMixin
 
-from config import db
+# from config import db
 
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
