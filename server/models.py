@@ -116,19 +116,19 @@ class Driver(db.Model, SerializerMixin):
 
     @validates('last_name')
     def validate_last_name(self, key, last_name):
-        if not last_name or not 2 < len(last_name) <13:
+        if not last_name or not 2 < len(last_name) < 13:
           raise ValueError(' Your last name must be between 2 and 13 characters long')
         return last_name
 
     @validates('user_name')
     def validate_user_name(self, key, user_name):
-        if not user_name or not 2 < len(user_name) <50:
+        if not user_name or not 2 < len(user_name) < 50:
           raise ValueError(' Your user name must be between 2 and 13 characters long')
         return user_name
 
     @validates('age')
     def validate_age(self, key, new_age):
-        if not new_age or not 16 <= new_age <= 101:
+        if not new_age or not 16 <= int(new_age) <= 101:
           raise ValueError(' Your age must be between 16 and 100 years old to join')
         return new_age
 
@@ -148,4 +148,5 @@ class Driver(db.Model, SerializerMixin):
     @validates('profile_picture')
     def profile_picture_valid(self, key, current_profile_picture):
         if not current_profile_picture or not type(str):
-            raise ValueError("")
+            raise ValueError("Invalid picture URL")
+        return current_profile_picture
