@@ -93,6 +93,7 @@ class Driver(db.Model, SerializerMixin):
     first_name = db.Column(db.String, nullable=False)
     last_name = db.Column(db.String, nullable=False)
     user_name = db.Column(db.String, nullable=False)
+    password = db.Column(db.String)
     age = db.Column(db.Integer, nullable=False)
     zip_code = db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=False)

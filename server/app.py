@@ -42,7 +42,7 @@ metadata = MetaData(naming_convention={
 # db = SQLAlchemy(metadata=metadata)
 migrate = Migrate(app, db)
 
-api=Api(app)
+api=Api(app, prefix="/api/v1")
 db.init_app(app)
 
 
