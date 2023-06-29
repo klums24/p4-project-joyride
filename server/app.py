@@ -121,6 +121,17 @@ class Cars(Resource):
     def get(self):
         cars =[c.to_dict() for c in Car.query.all()]
         return make_response(cars, 200)
+    
+    def post(self):
+        try:
+            data = request.get_json()
+            car = Car(**data)
+            db.session.add(car)
+            db.session.commit()
+            return make_response((car.to_dict()), 201)
+        except Exception as e:
+            return make_response(({"error": str(e)}),400)
+        
 
 api.add_resource(Cars, "/cars")
 
@@ -191,7 +202,7 @@ class Drives(Resource):
             drive = Drive(**data)
             db.session.add(drive)
             db.session.commit()
-            return make_response((drive.to_dict()), 200)
+            return make_response((drive.to_dict()), 201)
         except Exception as e:
             return make_response(({"error": str(e)}),400)
         
