@@ -7,8 +7,8 @@ import LoginForm from "./LoginForm";
 import LoggedIn from "./LoggedIn";
 import DriverCollection from "./DriverCollection";
 import DriverProfile from "./DriverProfile";
-
-
+import CarCollection from "./CarCollection";
+import CarCard from "./CarCard";
 
 function App() {
   
@@ -57,12 +57,15 @@ if (!currentDriver) {
         <Route path = '/drivers'>
           <DriverCollection />
         </Route>
-        <Route path = '/'>
-          <DriverProfile currentDriver={currentDriver} handleSignoutClick={handleSignoutClick}/>
+        <Route exact path = '/'>
+          <DriverProfile currentDriver={currentDriver} handleSignoutClick={handleSignoutClick} saveDriver={saveDriver}/>
         </Route>
         {/* <Route exact path="/">
           <LoggedIn handleSignoutClick={handleSignoutClick}/>
         </Route> */}
+        <Route path="/cars">
+          <CarCollection />
+        </Route>
       </Switch>
     </div>
   );

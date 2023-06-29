@@ -3,22 +3,22 @@ import {useFormik} from "formik";
 import * as yup from "yup";
 
 
-function LoginForm({saveDriver, handleToggleForm}) {
+function UpdateProfileForm({currentDriver, saveDriver}) {
 
     
 
     const formik = useFormik({
         initialValues: {
-          email: "",
-          password: "",
+          email: currentDriver.email,
+          profile_picture: currentDriver.profile_picture,
         },
         validationSchema: yup.object({
           email: yup.string().required("Email is required"),
-          password: yup.string().required("Password is required"),
+          profile_picture: yup.string().required("Profile picture is required"),
         }),
         onSubmit: values => {
-          fetch("/api/v1/signin",{
-            method:"POST",
+          fetch(`/api/v1/drivers/${currentDriver.id}`, {
+            method:"PATCH",
             headers: {
               "Content-Type": "application/json",
             },
@@ -27,8 +27,7 @@ function LoginForm({saveDriver, handleToggleForm}) {
             if (resp.ok) {
               resp.json()
               .then(driver => {
-                saveDriver(driver)
-                
+                saveDriver(driver) 
               })
             }
             else {
@@ -52,23 +51,20 @@ function LoginForm({saveDriver, handleToggleForm}) {
                 value={formik.values.email}
             />
             
-            <label htmlFor="password">Password:</label>
+            <label htmlFor="profile_picture">Profile picture:</label>
             <input
-                id="password"
-                name="password"
-                type="password"
+                id="profile_picture"
+                name="profile_picture"
+                type="text"
                 onChange={formik.handleChange}
-                value={formik.values.password}
+                value={formik.values.profile_picture}
             />
             
-          <button type="submit">Login</button>
+          <button type="submit">Update</button>
         
         </form>
-        <button onClick={handleToggleForm}>
-        Sign up to create new account
-        </button>
       </>
       )
     }
     
-    export default LoginForm;
+    export default UpdateProfileForm;
