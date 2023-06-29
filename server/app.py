@@ -60,7 +60,7 @@ CORS(app)
 def index():
     return '<h1>JoyRide!</h1>'
 
-@app.route("/api/v1/check-user", methods=["GET"])
+@app.route("/check-user", methods=["GET"])
 def check_user():
     if id := session.get("driver_id"):
         if driver := db.session.get(Driver, id):
@@ -68,7 +68,7 @@ def check_user():
     
     return make_response({"error": "Unauthorized"}, 401)
 
-@app.route("/api/v1/signup" , methods=["POST"])
+@app.route("/signup" , methods=["POST"])
 def signup():
     try:
         data = request.get_json()
@@ -94,12 +94,12 @@ class SignIn(Resource):
                 return driver.to_dict(), 200
         return make_response({"error": "Unauthorized"}, 401)
     
-api.add_resource(SignIn, "/api/v1/signin")
+api.add_resource(SignIn, "/signin")
 
 class SignOut(Resource):
     def delete(self):
         
-        session["driver_id"] = ""
+        session["driver_id"] = None
                 
         return make_response({}, 204)
         
@@ -111,7 +111,7 @@ class Cars(Resource):
         cars =[c.to_dict() for c in Car.query.all()]
         return make_response(cars, 200)
 
-api.add_resource(Cars, "/api/v1/cars")
+api.add_resource(Cars, "/cars")
 
 class CarById(Resource):
     def get(self, id):
@@ -129,7 +129,7 @@ class CarById(Resource):
         except Exception as e:
             return make_response(({"error": "404: Car not found."}),404)
             
-api.add_resource(CarById, "/api/v1/cars/<int:id>")
+api.add_resource(CarById, "/cars/<int:id>")
 
 class Drivers(Resource):
 
@@ -149,7 +149,7 @@ class Drivers(Resource):
     #     except Exception as e:
     #         return make_response(({"error": str(e)}),400)
         
-api.add_resource(Drivers, '/api/v1/drivers')
+api.add_resource(Drivers, '/drivers')
     
 class DriverById(Resource):
     def get(self, id):
@@ -166,7 +166,7 @@ class DriverById(Resource):
             return make_response(({}),204)
         except Exception as e:
             return make_response(({"error": "404: Driver not found."}),404)
-api.add_resource(DriverById, "/api/v1/drivers/<int:id>")
+api.add_resource(DriverById, "/drivers/<int:id>")
 
 class Drives(Resource):
     def get(self):
