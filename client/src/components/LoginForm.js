@@ -14,7 +14,7 @@ function LoginForm({saveDriver, handleToggleForm}) {
           password: yup.string().required("Password is required"),
         }),
         onSubmit: values => {
-          fetch("/signin",{
+          fetch("/api/v1/signin",{
             method:"POST",
             headers: {
               "Content-Type": "application/json",
@@ -54,7 +54,7 @@ function LoginForm({saveDriver, handleToggleForm}) {
                 name="password"
                 type="password"
                 onChange={formik.handleChange}
-                value={formik.values.lastName}
+                value={formik.values.password}
             />
             
           <button type="submit">Login</button>

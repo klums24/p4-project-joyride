@@ -1,18 +1,20 @@
 import React from 'react'
+import DriverCard from './DriverCard';
+import { Container, Row } from 'react-bootstrap'
+import {useState, useEffect} from 'react';
 
 function DriverCollection() {
-    // useEffect(() => {
-    //     fetch("/api/v1/drivers")
-    //     .then(response => response.json())
-    //     .then(data => {
-    //       setDrivers(data)
-    //       console.log(drivers)
-          
-    //     })
-    //   }, []) 
+  const [drivers, setDrivers] = useState([]);
+
+  const mappedDrivers = drivers.map(driver => <DriverCard key={driver.id} {...driver} />)
+
   return (
-    <div>DriverCollection</div>
-  )
+    <Container>
+      <Row>
+        {mappedDrivers}
+      </Row>
+    </Container>
+  );
 }
 
 export default DriverCollection

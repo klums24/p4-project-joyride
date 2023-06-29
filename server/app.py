@@ -10,7 +10,7 @@
 import os
 # from config import app, db, api
 
-
+import ipdb
 from flask import Flask, request, make_response, session
 from flask_cors import CORS
 from flask_migrate import Migrate
@@ -43,7 +43,7 @@ metadata = MetaData(naming_convention={
 # db = SQLAlchemy(metadata=metadata)
 migrate = Migrate(app, db)
 
-api=Api(app, prefix="/api/v1")
+api=Api(app)
 db.init_app(app)
 
 
@@ -56,17 +56,17 @@ CORS(app)
 
 
 
-@app.route('/')
+@app.route('/api/v1')
 def index():
     return '<h1>JoyRide!</h1>'
 
-@app.route("/check-user", methods=["GET"])
+@app.route("/api/v1/check-user", methods=["GET"])
 def check_user():
     if id := session.get("driver_id"):
         if driver := db.session.get(Driver, id):
             return make_response(driver.to_dict(), 200)
     
-    return make_response({"error": "Unauthorized"}, 401)
+    return make_response({"error": "Unauthorized (from check user)"}, 401)
 
 # the following class check user is a test, can comment back in the non restful route
 # class CheckUser(Resource):
@@ -79,7 +79,7 @@ def check_user():
 # api.add_resource(CheckUser, '/check-user')
 
 
-@app.route("/signup" , methods=["POST"])
+@app.route("/api/v1/signup" , methods=["POST"])
 def signup():
     try:
         data = request.get_json()
@@ -100,29 +100,29 @@ class SignIn(Resource):
         driver = Driver.query.filter(Driver.email == email).first()
 
         if driver:
-            if driver.authenticate(password):
+            if driver.password == password:
                 session["driver_id"] = driver.id
+                ipdb.set_trace()
                 return driver.to_dict(), 200
-        return make_response({"error": "Unauthorized"}, 401)
+        return make_response({"error": "Unauthorized (from sign in)"}, 401)
     
-api.add_resource(SignIn, "/signin")
+api.add_resource(SignIn, "/api/v1/signin")
 
 class SignOut(Resource):
     def delete(self):
         
-        session["driver_id"] = None
-                
+        session["driver_id"] = None   
         return make_response({}, 204)
         
 
-api.add_resource(SignOut, "/signout")
+api.add_resource(SignOut, "/api/v1/signout")
 
 class Cars(Resource):
     def get(self):
         cars =[c.to_dict() for c in Car.query.all()]
         return make_response(cars, 200)
 
-api.add_resource(Cars, "/cars")
+api.add_resource(Cars, "/api/v1/cars")
 
 class CarById(Resource):
     def get(self, id):
@@ -140,7 +140,7 @@ class CarById(Resource):
         except Exception as e:
             return make_response(({"error": "404: Car not found."}),404)
             
-api.add_resource(CarById, "/cars/<int:id>")
+api.add_resource(CarById, "/api/v1/cars/<int:id>")
 
 class Drivers(Resource):
 
@@ -160,7 +160,7 @@ class Drivers(Resource):
     #     except Exception as e:
     #         return make_response(({"error": str(e)}),400)
         
-api.add_resource(Drivers, '/drivers')
+api.add_resource(Drivers, '/api/v1/drivers')
     
 class DriverById(Resource):
     def get(self, id):
@@ -177,7 +177,7 @@ class DriverById(Resource):
             return make_response(({}),204)
         except Exception as e:
             return make_response(({"error": "404: Driver not found."}),404)
-api.add_resource(DriverById, "/drivers/<int:id>")
+api.add_resource(DriverById, "/api/v1/drivers/<int:id>")
 
 class Drives(Resource):
     def get(self):
@@ -195,7 +195,7 @@ class Drives(Resource):
         except Exception as e:
             return make_response(({"error": str(e)}),400)
         
-api.add_resource(Drives, '/drives')
+api.add_resource(Drives, '/api/v1/drives')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
