@@ -7,7 +7,7 @@ function DriveCard({}) {
     return (
         <Col>
           <Card style={{ width: '18rem' }}>
-            <Card.Img src={} alt= "name" height={200} width={150}/>
+            <Card.Img src={image} alt= "name" height={200} width={150}/>
             <Card.Body className="text-center">
               <Card.Title className="fs-3">{name}</Card.Title>
               <Card.Title className="fs-10 text-mute"> Display Drives </Card.Title>

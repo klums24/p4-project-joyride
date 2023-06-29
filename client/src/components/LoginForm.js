@@ -2,7 +2,10 @@ import React from "react"
 import {useFormik} from "formik";
 import * as yup from "yup";
 
+
 function LoginForm({saveDriver, handleToggleForm}) {
+
+    
 
     const formik = useFormik({
         initialValues: {
@@ -14,7 +17,7 @@ function LoginForm({saveDriver, handleToggleForm}) {
           password: yup.string().required("Password is required"),
         }),
         onSubmit: values => {
-          fetch("/signin",{
+          fetch("/api/v1/signin",{
             method:"POST",
             headers: {
               "Content-Type": "application/json",
@@ -25,12 +28,13 @@ function LoginForm({saveDriver, handleToggleForm}) {
               resp.json()
               .then(driver => {
                 saveDriver(driver)
+                
               })
             }
             else {
               resp.json()
               .then(error => {
-                alert(error.error)
+                alert("THIS IS WRONG",error.error)
               })
             }
           })
@@ -52,9 +56,9 @@ function LoginForm({saveDriver, handleToggleForm}) {
             <input
                 id="password"
                 name="password"
-                type="text"
+                type="password"
                 onChange={formik.handleChange}
-                value={formik.values.lastName}
+                value={formik.values.password}
             />
             
           <button type="submit">Login</button>

@@ -60,7 +60,7 @@ CORS(app)
 def index():
     return '<h1>JoyRide!</h1>'
 
-@app.route("/check-user", methods=["GET"])
+@app.route("/api/v1/check-user", methods=["GET"])
 def check_user():
     if id := session.get("driver_id"):
         if driver := db.session.get(Driver, id):
@@ -68,18 +68,9 @@ def check_user():
     
     return make_response({"error": "Unauthorized"}, 401)
 
-# the following class check user is a test, can comment back in the non restful route
-# class CheckUser(Resource):
-#     def get(self):
-#         if session.get('driver_id'):
-#             user = Driver.query.filter(Driver.id == session['driver_id']).first()
-#             return user.to_dict(), 200
-#         return {'error': '401 Unauthorized'}, 401
-    
-# api.add_resource(CheckUser, '/check-user')
 
 
-@app.route("/signup" , methods=["POST"])
+@app.route("/api/v1/signup" , methods=["POST"])
 def signup():
     try:
         data = request.get_json()
@@ -100,7 +91,7 @@ class SignIn(Resource):
         driver = Driver.query.filter(Driver.email == email).first()
 
         if driver:
-            if driver.authenticate(password):
+            if driver.password == password:
                 session["driver_id"] = driver.id
                 return driver.to_dict(), 200
         return make_response({"error": "Unauthorized"}, 401)
@@ -128,10 +119,12 @@ class Cars(Resource):
             car = Car(**data)
             db.session.add(car)
             db.session.commit()
+            drive = Drive(driver_id= session.get('driver_id'), car_id=car.id )
+            db.session.add(drive)
+            db.session.commit()
             return make_response((car.to_dict()), 201)
         except Exception as e:
             return make_response(({"error": str(e)}),400)
-        
 
 api.add_resource(Cars, "/cars")
 
@@ -161,15 +154,7 @@ class Drivers(Resource):
             return make_response(drivers, 200)
         return make_response("no drivers found", 404)
     
-    # def post(self):
-    #     try:
-    #         data = request.get_json()
-    #         driver = Driver(**data)
-    #         db.session.add(driver)
-    #         db.session.commit()
-    #         return make_response((driver.to_dict()), 201)
-    #     except Exception as e:
-    #         return make_response(({"error": str(e)}),400)
+    # post to drivers is in signup
         
 api.add_resource(Drivers, '/drivers')
     
