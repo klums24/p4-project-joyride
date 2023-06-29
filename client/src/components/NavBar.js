@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom'
 
 function NavBar () {
   return (
-    <div>
-    <h1>nav bar here</h1>
-    </div>
+    <div></div>
     // <Navbar className="nav" sticky='top' style={{backgroundColor:"rgb(125, 189, 248)"}}>
     //     <Container>
     //         <Navbar.Brand as= {Link} to="/" className="badge fs-2 fw-bold  text-wrap text-dark "style={{fontFamily: 'Perpetua', backgroundColor: "rgb(125, 189, 248)"}} >Joy Ride</Navbar.Brand>

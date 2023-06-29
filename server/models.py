@@ -105,7 +105,7 @@ class Driver(db.Model, SerializerMixin):
     drives = db.relationship('Drive', back_populates='driver')
     cars = association_proxy('drives','car')              
     
-    serialize_rules = ('-cars', '-drives', '-password', '-zipcode', '-updated_at', '-created_at')
+    serialize_rules = ('-cars', '-drives', '-zipcode', '-updated_at', '-created_at')
     
     
     

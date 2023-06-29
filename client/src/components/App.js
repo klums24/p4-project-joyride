@@ -11,7 +11,7 @@ import DriverProfile from "./DriverProfile";
 
 
 function App() {
-  // Code goes here!
+  
 
   const [showLoginForm, setShowLoginForm] = useState(false)
   const [currentDriver, setCurrentDriver] = useState(null)
@@ -54,15 +54,15 @@ if (!currentDriver) {
   return (
     <div>
       <Switch>
-        <Route exact path="/">
-          <LoggedIn handleSignoutClick={handleSignoutClick}/>
-        </Route>
         <Route path = '/drivers'>
           <DriverCollection />
         </Route>
-        <Route path = '/profile'>
-          <DriverProfile currentDriver={currentDriver}/>
+        <Route path = '/'>
+          <DriverProfile currentDriver={currentDriver} handleSignoutClick={handleSignoutClick}/>
         </Route>
+        {/* <Route exact path="/">
+          <LoggedIn handleSignoutClick={handleSignoutClick}/>
+        </Route> */}
       </Switch>
     </div>
   );
