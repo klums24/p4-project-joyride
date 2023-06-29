@@ -4,7 +4,7 @@ import {useFormik} from "formik";
 import * as yup from "yup";
 
 
-function NewUserForm() {
+function NewUserForm({saveDriver, handleToggleForm}) {
     const userSchema = yup.object({
         first_name: yup.string().required("Please enter your first name"),
         last_name: yup.string().required("Please enter your last name"),
@@ -30,16 +30,30 @@ function NewUserForm() {
         onSubmit: values => {
             // alert(JSON.stringify(values, null));
             console.log("im in fetch")
-            fetch("/api/v1/drivers", {
+            fetch("/api/v1/signup", {
                 method:"POST",
                 headers: {
                     "Content-Type": "application/json",   
                 },
                 body: JSON.stringify(values, null, 2),
-            }).then(console.log)
+            }).then(resp => {
+                if (resp.ok) {
+                    resp.json()
+                    .then(driver => {
+                        saveDriver(driver)
+                    })
+                }
+                else {
+                    resp.json()
+                    .then(errorObj => {
+                        alert(errorObj.error)
+                    })
+                }
+            })
         },
     });
     return (
+        <>
         <form onSubmit={formik.handleSubmit}>
             <label htmlFor="first_name">First Name:</label>
             <input
@@ -116,6 +130,10 @@ function NewUserForm() {
             <button type="submit">Submit2</button>
 
         </form>
+        <button onClick={handleToggleForm}>
+        Login to your account
+        </button>
+        </>
     )
     
 }

@@ -2,30 +2,50 @@ import React from "react"
 import {useFormik} from "formik";
 import * as yup from "yup";
 
-function LoginForm() {
+function LoginForm({saveDriver, handleToggleForm}) {
 
     const formik = useFormik({
         initialValues: {
-          username: "",
+          email: "",
           password: "",
         },
         validationSchema: yup.object({
-          username: yup.string().required("Username is required"),
+          email: yup.string().required("Email is required"),
           password: yup.string().required("Password is required"),
         }),
         onSubmit: values => {
-          alert(JSON.stringify(values, null));
+          fetch("/api/v1/signin",{
+            method:"POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(values, null, 2),
+          }).then(resp => {
+            if (resp.ok) {
+              resp.json()
+              .then(driver => {
+                saveDriver(driver)
+              })
+            }
+            else {
+              resp.json()
+              .then(error => {
+                alert(error.error)
+              })
+            }
+          })
         },
     });
     return (
+      <>
         <form onSubmit={formik.handleSubmit}>
-            <label htmlFor="username">Username:</label>
+            <label htmlFor="email">Email:</label>
             <input
-                id="username"
-                name="username"
+                id="email"
+                name="email"
                 type="text"
                 onChange={formik.handleChange}
-                value={formik.values.username}
+                value={formik.values.email}
             />
             
             <label htmlFor="password">Password:</label>
@@ -38,7 +58,12 @@ function LoginForm() {
             />
             
           <button type="submit">Login</button>
+        
         </form>
+        <button onClick={handleToggleForm}>
+        Sign up to create new account
+        </button>
+      </>
       )
     }
     

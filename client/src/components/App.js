@@ -10,23 +10,41 @@ import LoginForm from "./LoginForm";
 function App() {
   // Code goes here!
   const [drivers, setDrivers] = useState([]);
-  const [showForm, setShowForm] = useState(false)
+  const [showLoginForm, setShowLoginForm] = useState(false)
+  const [currentDriver, setCurrentDriver] = useState(null)
+  
+  const saveDriver = (new_driver) => {
+    setCurrentDriver(new_driver)
+  }
 
   const handleToggleForm = () => {
-    setShowForm(currentVal => !currentVal);
+    setShowLoginForm(currentVal => !currentVal);
   };
-  // useEffect(() => {
-  //   fetch("/api/v1/drivers")
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     setDrivers(data)
-  //     console.log(drivers)
+
+  const handleSignoutClick= () => {
+    fetch("/signout", {method: "DELETE"})
+      .then(() => {
+      setCurrentDriver(null); 
       
-  //   })
-  // }, [])
+    }, );
+  }
 
 
-  
+
+  useEffect(() => {
+    fetch("/api/v1/check-user")
+    .then(response => {
+      if (response.ok){
+        response.json()
+        .then(saveDriver)
+      }
+    })
+    }, [])
+
+
+if (!currentDriver) {
+  return showLoginForm ? <LoginForm saveDriver={saveDriver} handleToggleForm={handleToggleForm}/> : <NewUserForm saveDriver={saveDriver} handleToggleForm={handleToggleForm}/>
+}  
 
 
  
@@ -37,10 +55,7 @@ function App() {
           <header>
             <div className="logo">
               <h1>Joy Ride</h1>
-              {showForm ? <LoginForm /> : <NewUserForm />}
-              <button onClick={handleToggleForm}>
-                {showForm ? "Sign Up" : "Login"}
-              </button>
+              <button onClick={handleSignoutClick}>Logout</button>
               <img src="https://cdn.ferrari.com/cms/network/media/img/resize/60d0b58c9b071e08fb36d6b5-ferrari-296-gtb-intro-desk-2?width=1920&height=1600" alt="ferrari" />
             </div>
           </header>
