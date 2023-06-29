@@ -30,7 +30,7 @@ function NewUserForm({saveDriver, handleToggleForm}) {
         onSubmit: values => {
             // alert(JSON.stringify(values, null));
             console.log("im in fetch")
-            fetch("/api/v1/signup", {
+            fetch("/signup", {
                 method:"POST",
                 headers: {
                     "Content-Type": "application/json",   
