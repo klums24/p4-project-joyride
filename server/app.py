@@ -60,7 +60,7 @@ CORS(app)
 def index():
     return '<h1>JoyRide!</h1>'
 
-@app.route("/check-user", methods=["GET"])
+@app.route("/api/v1/check-user", methods=["GET"])
 def check_user():
     if id := session.get("driver_id"):
         if driver := db.session.get(Driver, id):
@@ -79,7 +79,7 @@ def check_user():
 # api.add_resource(CheckUser, '/check-user')
 
 
-@app.route("/signup" , methods=["POST"])
+@app.route("/api/v1/signup" , methods=["POST"])
 def signup():
     try:
         data = request.get_json()
@@ -100,7 +100,7 @@ class SignIn(Resource):
         driver = Driver.query.filter(Driver.email == email).first()
 
         if driver:
-            if driver.authenticate(password):
+            if driver.password == password:
                 session["driver_id"] = driver.id
                 return driver.to_dict(), 200
         return make_response({"error": "Unauthorized"}, 401)

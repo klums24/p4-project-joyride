@@ -4,12 +4,15 @@ import { Switch, Route } from "react-router-dom";
 // import SignUpForm from "./SignUpForm";
 import NewUserForm from "./NewUserForm";
 import LoginForm from "./LoginForm";
+import LoggedIn from "./LoggedIn";
+import DriverCollection from "./DriverCollection";
+import DriverProfile from "./DriverProfile";
 
 
 
 function App() {
   // Code goes here!
-  const [drivers, setDrivers] = useState([]);
+
   const [showLoginForm, setShowLoginForm] = useState(false)
   const [currentDriver, setCurrentDriver] = useState(null)
   
@@ -22,7 +25,7 @@ function App() {
   };
 
   const handleSignoutClick= () => {
-    fetch("/signout", {method: "DELETE"})
+    fetch("/api/v1/signout", {method: "DELETE"})
       .then(() => {
       setCurrentDriver(null); 
       
@@ -32,7 +35,7 @@ function App() {
 
 
   useEffect(() => {
-    fetch("/check-user")
+    fetch("/api/v1/check-user")
     .then(response => {
       if (response.ok){
         response.json()
@@ -52,13 +55,13 @@ if (!currentDriver) {
     <div>
       <Switch>
         <Route exact path="/">
-          <header>
-            <div className="logo">
-              <h1>Joy Ride</h1>
-              <button onClick={handleSignoutClick}>Logout</button>
-              <img src="https://cdn.ferrari.com/cms/network/media/img/resize/60d0b58c9b071e08fb36d6b5-ferrari-296-gtb-intro-desk-2?width=1920&height=1600" alt="ferrari" />
-            </div>
-          </header>
+          <LoggedIn handleSignoutClick={handleSignoutClick}/>
+        </Route>
+        <Route path = '/drivers'>
+          <DriverCollection />
+        </Route>
+        <Route path = '/profile'>
+          <DriverProfile currentDriver={currentDriver}/>
         </Route>
       </Switch>
     </div>

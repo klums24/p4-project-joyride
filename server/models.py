@@ -27,10 +27,10 @@ class Car(db.Model, SerializerMixin):
     make = db.Column(db.String, nullable=False)
     model = db.Column(db.Integer, nullable=False)
     year = db.Column(db.Integer, nullable=False)
-    trim = db.Column(db.String, nullable=False)  
-    mileage = db.Column(db.Integer, nullable=False)
     picture = db.Column(db.String, nullable=False)
-    for_sale = db.Column(db.Boolean, nullable=False)
+    # trim = db.Column(db.String, nullable=False)  
+    # mileage = db.Column(db.Integer, nullable=False)
+    # for_sale = db.Column(db.Boolean, nullable=False)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
     
@@ -53,9 +53,9 @@ class Drive(db.Model, SerializerMixin):
     __tablename__ = 'drives'
     
     id=db.Column(db.Integer, primary_key=True)
-    start_point = db.Column(db.String, nullable=False)
-    end_point = db.Column(db.String, nullable=False)
-    mileage = db.Column(db.Integer, nullable=False)
+    # start_point = db.Column(db.String, nullable=False)
+    # end_point = db.Column(db.String, nullable=False)
+    # mileage = db.Column(db.Integer, nullable=False)
     details = db.Column(db.String)
     car_id = db.Column(db.Integer, db.ForeignKey('cars.id'))
     driver_id = db.Column(db.Integer, db.ForeignKey('drivers.id'))
@@ -105,7 +105,7 @@ class Driver(db.Model, SerializerMixin):
     drives = db.relationship('Drive', back_populates='driver')
     cars = association_proxy('drives','car')              
     
-    serialize_rules = ('-cars', '-drives')
+    serialize_rules = ('-cars', '-drives', '-password', '-zipcode', '-updated_at', '-created_at')
     
     
     

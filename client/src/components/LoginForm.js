@@ -14,7 +14,7 @@ function LoginForm({saveDriver, handleToggleForm}) {
           password: yup.string().required("Password is required"),
         }),
         onSubmit: values => {
-          fetch("/signin",{
+          fetch("/api/v1/signin",{
             method:"POST",
             headers: {
               "Content-Type": "application/json",
@@ -30,7 +30,7 @@ function LoginForm({saveDriver, handleToggleForm}) {
             else {
               resp.json()
               .then(error => {
-                alert(error.error)
+                alert("THIS IS WRONG",error.error)
               })
             }
           })
