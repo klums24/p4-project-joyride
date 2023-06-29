@@ -68,6 +68,17 @@ def check_user():
     
     return make_response({"error": "Unauthorized"}, 401)
 
+# the following class check user is a test, can comment back in the non restful route
+# class CheckUser(Resource):
+#     def get(self):
+#         if session.get('driver_id'):
+#             user = Driver.query.filter(Driver.id == session['driver_id']).first()
+#             return user.to_dict(), 200
+#         return {'error': '401 Unauthorized'}, 401
+    
+# api.add_resource(CheckUser, '/check-user')
+
+
 @app.route("/signup" , methods=["POST"])
 def signup():
     try:
@@ -79,7 +90,7 @@ def signup():
         return make_response(new_driver.to_dict(), 201)
     except Exception as e:
         return make_response({"error": str(e) }, 400)
-    
+
 class SignIn(Resource):
     def post(self):
 

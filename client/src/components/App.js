@@ -32,7 +32,7 @@ function App() {
 
 
   useEffect(() => {
-    fetch("/api/v1/check-user")
+    fetch("/check-user")
     .then(response => {
       if (response.ok){
         response.json()
