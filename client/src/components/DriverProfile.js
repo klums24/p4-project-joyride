@@ -17,9 +17,9 @@ const {first_name, age, profile_picture} = currentDriver
 
 return (
   <>
+  <NavBar/>
   <Container>
     <header> Joy Ride </header>
-      <NavBar/>
       <Row className='justify-content-md-center'>
           <Col xs>
               <Card>

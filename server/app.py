@@ -68,15 +68,6 @@ def check_user():
     
     return make_response({"error": "Unauthorized"}, 401)
 
-# the following class check user is a test, can comment back in the non restful route
-# class CheckUser(Resource):
-#     def get(self):
-#         if session.get('driver_id'):
-#             user = Driver.query.filter(Driver.id == session['driver_id']).first()
-#             return user.to_dict(), 200
-#         return {'error': '401 Unauthorized'}, 401
-    
-# api.add_resource(CheckUser, '/check-user')
 
 
 @app.route("/api/v1/signup" , methods=["POST"])
@@ -121,6 +112,16 @@ class Cars(Resource):
     def get(self):
         cars =[c.to_dict() for c in Car.query.all()]
         return make_response(cars, 200)
+    
+    def post(self):
+        try:
+            data = request.get_json()
+            car = Car(**data)
+            db.session.add(car)
+            db.session.commit()
+            return make_response((car.to_dict()), 201)
+        except Exception as e:
+            return make_response(({"error": str(e)}),400)
 
 api.add_resource(Cars, "/cars")
 
@@ -150,15 +151,7 @@ class Drivers(Resource):
             return make_response(drivers, 200)
         return make_response("no drivers found", 404)
     
-    # def post(self):
-    #     try:
-    #         data = request.get_json()
-    #         driver = Driver(**data)
-    #         db.session.add(driver)
-    #         db.session.commit()
-    #         return make_response((driver.to_dict()), 201)
-    #     except Exception as e:
-    #         return make_response(({"error": str(e)}),400)
+    # post to drivers is in signup
         
 api.add_resource(Drivers, '/drivers')
     
