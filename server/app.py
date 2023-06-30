@@ -123,7 +123,8 @@ class Cars(Resource):
             drive = Drive(driver_id= session.get('driver_id'), car_id=car.id )
             db.session.add(drive)
             db.session.commit()
-            return make_response((car.to_dict()), 201)
+            # import ipdb; ipdb.set_trace()
+            return make_response(({"car":car.to_dict(), "drive": drive.to_dict()}), 201)
         except Exception as e:
             return make_response(({"error": str(e)}),400)
 

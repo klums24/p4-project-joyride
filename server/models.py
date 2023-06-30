@@ -41,11 +41,11 @@ class Car(db.Model, SerializerMixin):
     # serialize_only = ('id','make','model', 'trim', 'mileage', 'picture')
     serialize_rules = ('-drivers', '-drives')
     
-    @validates('mileage')
-    def validate_make(self, key, new_mileage):
-        if not new_mileage or not 1 <= new_mileage <=250000:
-            raise ValueError('Invalid mileage entered: must be between 1 and 250000 miles')
-        return new_mileage
+    # @validates('mileage')
+    # def validate_make(self, key, new_mileage):
+    #     if not new_mileage or not 1 <= new_mileage <=250000:
+    #         raise ValueError('Invalid mileage entered: must be between 1 and 250000 miles')
+    #     return new_mileage
 
 
 
@@ -67,23 +67,23 @@ class Drive(db.Model, SerializerMixin):
 
     serialize_rules = ('-driver.drives', '-car.drives')
 
-    @validates('mileage')
-    def validate_make(self, key, new_mileage):
-        if not new_mileage or type(new_mileage) not in [int, float] or not 1 < new_mileage < 50000:
-            raise ValueError('Invalid trip mileage entered: must be between 1 and 3500 miles')
-        return new_mileage
+    # @validates('mileage')
+    # def validate_make(self, key, new_mileage):
+    #     if not new_mileage or type(new_mileage) not in [int, float] or not 1 < new_mileage < 50000:
+    #         raise ValueError('Invalid trip mileage entered: must be between 1 and 3500 miles')
+    #     return new_mileage
     
-    @validates('start_point')
-    def validate_start_point(self, key, start_point):
-        if not start_point or type(start_point) not in [str]:
-            raise ValueError("Start point must be a string")
-        return start_point
+    # @validates('start_point')
+    # def validate_start_point(self, key, start_point):
+    #     if not start_point or type(start_point) not in [str]:
+    #         raise ValueError("Start point must be a string")
+    #     return start_point
 
-    @validates('end_point')
-    def validate_end_point(self, key, end_point):
-        if not end_point or type(end_point) not in [str]:
-            raise ValueError("End point must be a string")
-        return end_point
+    # @validates('end_point')
+    # def validate_end_point(self, key, end_point):
+    #     if not end_point or type(end_point) not in [str]:
+    #         raise ValueError("End point must be a string")
+    #     return end_point
 
 
 class Driver(db.Model, SerializerMixin):

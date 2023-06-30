@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import CarCard from './CarCard'
 
-function CarCollection({cars}) {
+function CarCollection({cars, currentDriver}) {
 
     
 
@@ -16,7 +16,7 @@ function CarCollection({cars}) {
     // }, []) 
 
 
-      const mappedCars = cars.map(car => <CarCard key={car.id} {...car}/>)
+      const mappedCars = cars.map(car => <CarCard key={car.id} {...car} currentDriver={currentDriver}/>)
     
   return (
     <div>
@@ -28,3 +28,5 @@ function CarCollection({cars}) {
 
 
 export default CarCollection
+
+

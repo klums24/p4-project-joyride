@@ -19,6 +19,19 @@ function App() {
   const [cars, setCars] = useState([])
   const [drives, setDrives] = useState([])
   
+
+  const addDriveToUser = (newDrive) => {
+    setCurrentDriver(current_driver => {
+      return {
+        ...current_driver,
+        drives: [
+          ...current_driver.drives, newDrive
+        ]
+      }
+
+    })
+  }
+
   useEffect(() => {
     fetch("/api/v1/cars")
     .then(response => response.json())
@@ -70,8 +83,12 @@ function App() {
 
 
 if (!currentDriver) {
-  return showLoginForm ? <LoginForm saveDriver={saveDriver} handleToggleForm={handleToggleForm}/> : <NewUserForm saveDriver={saveDriver} handleToggleForm={handleToggleForm}/>
-}  
+  return (
+  <><img src="https://wallpapercave.com/wp/wp7611213.jpg" alt="!"/>
+    {showLoginForm ? <LoginForm saveDriver={saveDriver} handleToggleForm={handleToggleForm}/> : <NewUserForm saveDriver={saveDriver} handleToggleForm={handleToggleForm}/>}
+  </>
+  )
+  }  
 
 
  
@@ -82,13 +99,13 @@ if (!currentDriver) {
           <DriverCollection />
         </Route>
         <Route exact path = '/'>
-          <DriverProfile currentDriver={currentDriver} handleSignoutClick={handleSignoutClick} saveDriver={saveDriver} saveNewCar={saveNewCar} setCars={setCars} saveNewDrive={saveNewDrive} />
+          <DriverProfile currentDriver={currentDriver} handleSignoutClick={handleSignoutClick} saveDriver={saveDriver} saveNewCar={saveNewCar} setCars={setCars} saveNewDrive={saveNewDrive} addDriveToUser={addDriveToUser}/>
         </Route>
         {/* <Route exact path="/">
           <LoggedIn handleSignoutClick={handleSignoutClick}/>
         </Route> */}
         <Route path="/cars">
-          <CarCollection cars={cars} setCars={setCars} />
+          <CarCollection cars={cars} setCars={setCars} currentDriver={currentDriver}/>
         </Route>
       </Switch>
     </div>

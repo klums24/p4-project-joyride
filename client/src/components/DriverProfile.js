@@ -7,7 +7,7 @@ import UpdateProfileForm from './UpdateProfileForm'
 import NewCarForm from './NewCarForm'
 import NewDriveForm from './NewDriveForm'
 
-function DriverProfile({currentDriver, handleSignoutClick, saveDriver, saveNewCar, setCars, saveNewDrive}) {
+function DriverProfile({currentDriver, handleSignoutClick, saveDriver, saveNewCar, setCars, saveNewDrive, addDriveToUser}) {
   const history = useHistory()
   const [seeForm, setSeeForm] = useState(false) //profile update
   const [seeCreateCar, setCreateCar] = useState(false)
@@ -30,16 +30,21 @@ const toggleDriveForm = () => {
 const {first_name, age, profile_picture, drives, id} = currentDriver
 
 const cars = drives.map(drive => drive.car)
-const mappedCars = cars.map(car => <CarCard key={car.id} {...car}/>)
+const mappedCars = cars.map(car => <CarCard key={car.id} {...car} currentDriver={currentDriver}/>)
 
 const handleDelete = (e) => {
         fetch(`/api/v1/drivers/${id}`,{
           method: 'DELETE'
         })
-        .then(res => res.json())
-        .then(data => console.log(data))
+        .then(res => {
+          if (res.ok){
+            saveDriver(null)
+            // history.push("/signin")
+          }
+          
+        })
         .catch(error => console.error(error))
-        history.push('/signin');
+        
     
 
 }
@@ -48,7 +53,7 @@ return (
   <div>
   <NavBar/>
   <Container>
-    <header> Joy Ride </header>
+    <header> Welcome to JoyRide, {currentDriver.first_name}! </header>
       <Card.Img variant="top" src={profile_picture}/>
       <Card.Title>Name: {first_name}</Card.Title>
       <Card.Text>Age: {age} years old</Card.Text>
@@ -59,7 +64,7 @@ return (
       <Button variant='secondary' onClick={()=>history.push("/cars")}>See all cars</Button>
       {seeForm? <UpdateProfileForm currentDriver={currentDriver} saveDriver={saveDriver}/> : null}
       <Button variant='secondary' onClick={toggleCarForm}>Create a new car!</Button>
-      {seeCreateCar ? <NewCarForm seeCreateCar={seeCreateCar} saveNewCar={saveNewCar} setCars={setCars}/> : null}
+      {seeCreateCar ? <NewCarForm seeCreateCar={seeCreateCar} saveNewCar={saveNewCar} setCars={setCars} addDriveToUser={addDriveToUser}/> : null}
       <Button variant='secondary' onClick={toggleDriveForm}>Create a new drive!</Button>
       {seeDriveForm ? <NewDriveForm seeDriveForm={seeDriveForm} saveNewDrive={saveNewDrive} setNewDrive={setNewDrive} currentDriver={currentDriver}/> : null}
  
