@@ -1,33 +1,30 @@
+import React, {useState, useEffect} from 'react'
+import CarCard from './CarCard'
+
 function CarCollection() {
+
+    const [cars, setCars] = useState([])
+
     useEffect(() => {
         fetch("/api/v1/cars")
         .then(response => response.json())
         .then(data => {
           setCars(data)
-          console.log(cars)
+
           
         })
-      }, []) 
+    }, []) 
+
+
+      const mappedCars = cars.map(car => <CarCard key={car.id} {...car}/>)
+    
   return (
-    <div>Car Collection</div>
+    <div>
+        
+    {mappedCars}
+    </div>
   )
 }
 
 
-
-function DriveCollection() {
-    useEffect(() => {
-        fetch("/api/v1/drives")
-        .then(response => response.json())
-        .then(data => {
-          setCars(data)
-          console.log(drives)
-          
-        })
-      }, []) 
-  return (
-    <div> Drive Collection </div>
-  )
-}
-
-export default CarCollection 
+export default CarCollection

@@ -96,7 +96,7 @@ class Driver(db.Model, SerializerMixin):
     password = db.Column(db.String)
     age = db.Column(db.Integer, nullable=False)
     zip_code = db.Column(db.String, nullable=False)
-    email = db.Column(db.String, nullable=False)
+    email = db.Column(db.String, nullable=False, unique=True)
     profile_picture = db.Column(db.String)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
@@ -105,7 +105,7 @@ class Driver(db.Model, SerializerMixin):
     drives = db.relationship('Drive', back_populates='driver')
     cars = association_proxy('drives','car')              
     
-    serialize_rules = ('-cars', '-drives', '-zipcode', '-updated_at', '-created_at')
+    serialize_rules = ('-cars.drivers', '-drives.driver', '-zipcode', '-updated_at', '-created_at')
     
     
     

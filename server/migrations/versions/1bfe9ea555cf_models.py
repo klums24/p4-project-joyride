@@ -1,8 +1,8 @@
-"""a
+"""models
 
-Revision ID: 895110809efe
+Revision ID: 1bfe9ea555cf
 Revises: 
-Create Date: 2023-06-27 10:56:30.149825
+Create Date: 2023-06-29 18:09:18.036564
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '895110809efe'
+revision = '1bfe9ea555cf'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -23,10 +23,7 @@ def upgrade():
     sa.Column('make', sa.String(), nullable=False),
     sa.Column('model', sa.Integer(), nullable=False),
     sa.Column('year', sa.Integer(), nullable=False),
-    sa.Column('trim', sa.String(), nullable=False),
-    sa.Column('mileage', sa.Integer(), nullable=False),
     sa.Column('picture', sa.String(), nullable=False),
-    sa.Column('for_sale', sa.Boolean(), nullable=False),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('id')
@@ -36,19 +33,18 @@ def upgrade():
     sa.Column('first_name', sa.String(), nullable=False),
     sa.Column('last_name', sa.String(), nullable=False),
     sa.Column('user_name', sa.String(), nullable=False),
+    sa.Column('password', sa.String(), nullable=True),
     sa.Column('age', sa.Integer(), nullable=False),
     sa.Column('zip_code', sa.String(), nullable=False),
     sa.Column('email', sa.String(), nullable=False),
     sa.Column('profile_picture', sa.String(), nullable=True),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('email')
     )
     op.create_table('drives',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('start_point', sa.String(), nullable=False),
-    sa.Column('end_point', sa.String(), nullable=False),
-    sa.Column('mileage', sa.Integer(), nullable=False),
     sa.Column('details', sa.String(), nullable=True),
     sa.Column('car_id', sa.Integer(), nullable=True),
     sa.Column('driver_id', sa.Integer(), nullable=True),

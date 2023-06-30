@@ -91,6 +91,7 @@ class SignIn(Resource):
         driver = Driver.query.filter(Driver.email == email).first()
 
         if driver:
+            # import ipdb; ipdb.set_trace()
             if driver.password == password:
                 session["driver_id"] = driver.id
                 return driver.to_dict(), 200
@@ -173,6 +174,19 @@ class DriverById(Resource):
             return make_response(({}),204)
         except Exception as e:
             return make_response(({"error": "404: Driver not found."}),404)
+        
+    def patch(self, id):
+        try:
+            data = request.get_json()
+            driver = db.session.get(Driver, id)
+            for k, v in data.items():
+                setattr(driver, k, v)
+            db.session.commit()
+            return make_response((driver.to_dict()), 200)
+        except Exception as e:
+            return make_response(({"error": str(e)}),400)    
+        
+
 api.add_resource(DriverById, "/drivers/<int:id>")
 
 class Drives(Resource):

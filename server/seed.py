@@ -17,10 +17,7 @@ def create_cars():
             make=fake.first_name(),
             model=randint(1990, 2023),
             year=randint(1990, 2023),
-            trim=fake.word(),
-            mileage=randint(1, 50),
-            picture=fake.image_url(),
-            for_sale=fake.boolean(),
+            picture=fake.image_url(),    
         )
         cars.append(c)
     return cars
@@ -37,6 +34,7 @@ def create_drivers():
             zip_code=fake.zipcode(),
             email=fake.email(),
             profile_picture=fake.image_url(),
+            password = fake.password()
         )
         drivers.append(d)
     return drivers
@@ -46,9 +44,6 @@ def create_drives(cars, drivers):
     drives = []
     for _ in range(5):
         dr = Drive(
-            start_point=fake.city(),
-            end_point=fake.city(),
-            mileage=randint(1, 3500),
             details=fake.text(),
             car_id=rc([car.id for car in cars]),
             driver_id=rc([driver.id for driver in drivers])
