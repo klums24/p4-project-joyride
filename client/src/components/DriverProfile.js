@@ -5,11 +5,14 @@ import NavBar from './NavBar'
 import CarCard from './CarCard'
 import UpdateProfileForm from './UpdateProfileForm'
 import NewCarForm from './NewCarForm'
+import NewDriveForm from './NewDriveForm'
 
-function DriverProfile({currentDriver, handleSignoutClick, saveDriver, saveNewCar, setCars}) {
+function DriverProfile({currentDriver, handleSignoutClick, saveDriver, saveNewCar, setCars, saveNewDrive}) {
   const history = useHistory()
   const [seeForm, setSeeForm] = useState(false) //profile update
   const [seeCreateCar, setCreateCar] = useState(false)
+  const [newDrive, setNewDrive] = useState(null)
+  const [seeDriveForm, setSeeDriveForm] = useState(false)
   
   const toggleForm = () => {
     setSeeForm(currentVal => !currentVal)
@@ -18,6 +21,10 @@ function DriverProfile({currentDriver, handleSignoutClick, saveDriver, saveNewCa
 
 const toggleCarForm = () => {
   setCreateCar(currentVal => !currentVal)
+}
+
+const toggleDriveForm = () => {
+  setSeeDriveForm(currentVal => !currentVal)
 }
 
 const {first_name, age, profile_picture, drives, id} = currentDriver
@@ -52,9 +59,10 @@ return (
       <Button variant='secondary' onClick={()=>history.push("/cars")}>See all cars</Button>
       {seeForm? <UpdateProfileForm currentDriver={currentDriver} saveDriver={saveDriver}/> : null}
       <Button variant='secondary' onClick={toggleCarForm}>Create a new car!</Button>
-      {seeCreateCar? <NewCarForm seeCreateCar={seeCreateCar} saveNewCar={saveNewCar} setCars={setCars}/> : null}
-{/* create onclick for see all cars             */}
-{/* create onclick for see all drives */}    
+      {seeCreateCar ? <NewCarForm seeCreateCar={seeCreateCar} saveNewCar={saveNewCar} setCars={setCars}/> : null}
+      <Button variant='secondary' onClick={toggleDriveForm}>Create a new drive!</Button>
+      {seeDriveForm ? <NewDriveForm seeDriveForm={seeDriveForm} saveNewDrive={saveNewDrive} setNewDrive={setNewDrive} currentDriver={currentDriver}/> : null}
+ 
   </Container> 
   {mappedCars}
   </div> 
