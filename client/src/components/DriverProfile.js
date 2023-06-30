@@ -29,10 +29,11 @@ const handleDelete = (e) => {
         fetch(`/api/v1/drivers/${id}`,{
           method: 'DELETE'
         })
-        .then(res => res.json())
-        .then(data => console.log(data))
-        .catch(error => console.error(error))
-        history.push('/signin');
+        .then(history.push('/'))
+        // .then(data => history.push('/signin'))
+        // .catch(error => console.error(error))
+        
+        // history.push('/signin');
     
 
 }
