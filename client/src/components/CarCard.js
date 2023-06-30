@@ -9,6 +9,7 @@ function CarCard({make, model, year, id}) {
           <Card style={{ width: '18rem' }}>
             {/* <Card.Img src={picture} alt= "name" height={200} width={150}/> */}
             <Card.Body className="text-center">
+            <Card.Title className="fs-3">{id}</Card.Title>
               <Card.Title className="fs-3">{make}</Card.Title>
               <Card.Title className="fs-3">{model}</Card.Title>
               <Card.Title className="fs-3">{year}</Card.Title>

@@ -195,19 +195,17 @@ class Drives(Resource):
         return make_response(drives, 200)
     
     
-    # def post(self):
-    #     try:
-    #         data = request.get_json()
-    #         drive = Drive(**data)
-    #         db.session.add(drive)
-    #         db.session.commit()
-    #         driver = Driver(drive_id= session.get('drive_id'), drive_id=drive.id )
-    #         db.session.add(driver)
-    #         car = Car(car_id = session.get('driver_id'), car_id=car.id)
-    #         db.session.add(car)
-    #         return make_response((drive.to_dict()), 201)
-    #     except Exception as e:
-    #         return make_response(({"error": str(e)}),400)
+    def post(self):
+        try:
+            data = request.get_json()
+            drive = Drive(**data)
+            db.session.add(drive)
+            db.session.commit()
+            # driver = Drive(driver_id= session.get('drive_id'), car_id=car.id )
+            # db.session.add(driver)
+            return make_response((drive.to_dict()), 201)
+        except Exception as e:
+            return make_response(({"error": str(e)}),400)
         
 api.add_resource(Drives, '/drives')
 
