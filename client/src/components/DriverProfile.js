@@ -25,14 +25,14 @@ const {first_name, age, profile_picture, drives, id} = currentDriver
 const cars = drives.map(drive => drive.car)
 const mappedCars = cars.map(car => <CarCard key={car.id} {...car}/>)
 
-const handleDelete = () => {
+const handleDelete = (e) => {
         fetch(`/api/v1/drivers/${id}`,{
           method: 'DELETE'
         })
         .then(res => res.json())
         .then(data => console.log(data))
         .catch(error => console.error(error))
-        history.push('/');
+        history.push('/signin');
     
 
 }
