@@ -15,6 +15,27 @@ function App() {
 
   const [showLoginForm, setShowLoginForm] = useState(false)
   const [currentDriver, setCurrentDriver] = useState(null)
+  const [newCar, setNewCar] = useState(null)
+  const [cars, setCars] = useState([])
+  
+  useEffect(() => {
+    fetch("/api/v1/cars")
+    .then(response => response.json())
+    .then(data => {
+      setCars(data)
+
+      
+    })
+}, []) 
+  
+  
+  
+  
+  
+  
+  const saveNewCar = (new_car) => {
+    setNewCar(new_car)
+  }
   
   const saveDriver = (new_driver) => {
     setCurrentDriver(new_driver)

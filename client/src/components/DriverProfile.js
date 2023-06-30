@@ -4,14 +4,21 @@ import {Card, Button, Row, Col, Container} from 'react-bootstrap'
 import NavBar from './NavBar'
 import CarCard from './CarCard'
 import UpdateProfileForm from './UpdateProfileForm'
+import NewCarForm from './NewCarForm'
 
 function DriverProfile({currentDriver, handleSignoutClick, saveDriver}) {
   const history = useHistory()
-  const [seeForm, setSeeForm] = useState(false)
+  const [seeForm, setSeeForm] = useState(false) //profile update
+  const [seeCreateCar, setCreateCar] = useState(false)
   
   const toggleForm = () => {
     setSeeForm(currentVal => !currentVal)
+
   }
+
+const toggleCarForm = () => {
+  setCreateCar(currentVal => !currentVal)
+}
 
 const {first_name, age, profile_picture, drives} = currentDriver
 
@@ -33,6 +40,8 @@ return (
       <Button variant='secondary' onClick={handleSignoutClick}>Signout</Button>
       <Button variant='secondary' onClick={()=>history.push("/cars")}>See all cars</Button>
       {seeForm? <UpdateProfileForm currentDriver={currentDriver} saveDriver={saveDriver}/> : null}
+      <Button variant='secondary' onClick={toggleCarForm}>Create a new car!</Button>
+      {seeCreateCar? <NewCarForm seeCreateCar={seeCreateCar} /> : null}
 {/* create onclick for see all cars             */}
 {/* create onclick for see all drives */}    
   </Container> 

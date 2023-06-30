@@ -3,7 +3,7 @@ import CarCard from './CarCard'
 
 function CarCollection() {
 
-    const [cars, setCars] = useState([])
+    
 
     useEffect(() => {
         fetch("/api/v1/cars")
