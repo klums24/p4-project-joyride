@@ -15,6 +15,27 @@ function App() {
 
   const [showLoginForm, setShowLoginForm] = useState(false)
   const [currentDriver, setCurrentDriver] = useState(null)
+  const [newCar, setNewCar] = useState(null) //bug in this line
+  const [cars, setCars] = useState([])
+  
+  useEffect(() => {
+    fetch("/api/v1/cars")
+    .then(response => response.json())
+    .then(data => {
+      setCars(data)
+
+      
+    })
+}, []) 
+  
+  
+  
+  
+  
+  
+  const saveNewCar = (new_car) => {
+    setNewCar(new_car)
+  }
   
   const saveDriver = (new_driver) => {
     setCurrentDriver(new_driver)
@@ -58,13 +79,13 @@ if (!currentDriver) {
           <DriverCollection />
         </Route>
         <Route exact path = '/'>
-          <DriverProfile currentDriver={currentDriver} handleSignoutClick={handleSignoutClick} saveDriver={saveDriver}/>
+          <DriverProfile currentDriver={currentDriver} handleSignoutClick={handleSignoutClick} saveDriver={saveDriver} saveNewCar={saveNewCar} setCars={setCars}/>
         </Route>
         {/* <Route exact path="/">
           <LoggedIn handleSignoutClick={handleSignoutClick}/>
         </Route> */}
         <Route path="/cars">
-          <CarCollection />
+          <CarCollection cars={cars} setCars={setCars} />
         </Route>
       </Switch>
     </div>

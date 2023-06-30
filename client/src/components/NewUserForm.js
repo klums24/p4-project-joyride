@@ -54,7 +54,7 @@ function NewUserForm({saveDriver, handleToggleForm}) {
         },
     });
     return (
-        <>
+        <div>
         <form onSubmit={formik.handleSubmit}>
             <label htmlFor="first_name">First Name:</label>
             <input
@@ -134,7 +134,7 @@ function NewUserForm({saveDriver, handleToggleForm}) {
         <button onClick={handleToggleForm}>
         Login to your account
         </button>
-        </>
+        </div>
     )
     
 }
