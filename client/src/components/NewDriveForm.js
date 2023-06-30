@@ -3,7 +3,7 @@ import {useFormik} from "formik";
 import * as yup from "yup";
 
 
-function NewDriveForm({handleToggleForm, setNewDrive, currentDriver}){
+function NewDriveForm({handleToggleForm, setNewDrive, currentDriver, addDriveToUser}){
 
     const userSchema = yup.object({
         details: yup.string().required("Describe your drive"),
@@ -31,7 +31,7 @@ function NewDriveForm({handleToggleForm, setNewDrive, currentDriver}){
                 if (resp.ok) {
                     resp.json()
                     .then(data => {
-                        setNewDrive(data)
+                        addDriveToUser(data)
                     })
                 }
                 else {
