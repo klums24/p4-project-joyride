@@ -5,7 +5,7 @@ import * as yup from "yup";
 
 
 
-function NewCarForm({saveDriver, handleToggleForm}) {
+function NewCarForm({saveNewCar, handleToggleForm, setCars}) {
     const userSchema = yup.object({
         make: yup.string().required("Please enter your cars make"),
         model: yup.string().required("Please enter your cars model"),
@@ -36,7 +36,7 @@ function NewCarForm({saveDriver, handleToggleForm}) {
                 if (resp.ok) {
                     resp.json()
                     .then(car => {
-                        saveDriver(car)
+                        setCars(car)
                     })
                 }
                 else {
