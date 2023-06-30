@@ -21,7 +21,7 @@ const mappedCars = cars.map(car => <CarCard key={car.id} {...car}/>)
 
 
 return (
-  <>
+  <div>
   <NavBar/>
   <Container>
     <header> Joy Ride </header>
@@ -37,7 +37,7 @@ return (
 {/* create onclick for see all drives */}    
   </Container> 
   {mappedCars}
-  </> 
+  </div> 
 )
 }
 

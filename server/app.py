@@ -120,6 +120,9 @@ class Cars(Resource):
             car = Car(**data)
             db.session.add(car)
             db.session.commit()
+            drive = Drive(driver_id= session.get('driver_id'), car_id=car.id )
+            db.session.add(drive)
+            db.session.commit()
             return make_response((car.to_dict()), 201)
         except Exception as e:
             return make_response(({"error": str(e)}),400)
@@ -198,7 +201,7 @@ class Drives(Resource):
             drive = Drive(**data)
             db.session.add(drive)
             db.session.commit()
-            return make_response((drive.to_dict()), 200)
+            return make_response((drive.to_dict()), 201)
         except Exception as e:
             return make_response(({"error": str(e)}),400)
         

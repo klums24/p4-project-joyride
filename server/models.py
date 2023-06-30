@@ -151,3 +151,9 @@ class Driver(db.Model, SerializerMixin):
         if not current_profile_picture or not type(str):
             raise ValueError("Invalid picture URL")
         return current_profile_picture
+    
+    @validates('password')
+    def password_valid(self, key, current_password):
+        if not current_password or not type(str) and len(current_password) >4:
+            raise ValueError("Invalid password")
+        return current_password
