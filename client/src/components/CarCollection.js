@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { Container, Row, Col } from 'react-bootstrap'
 import CarCard from './CarCard'
 
 function CarCollection({cars, currentDriver}) {
@@ -16,13 +17,17 @@ function CarCollection({cars, currentDriver}) {
     // }, []) 
 
 
-      const mappedCars = cars.map(car => <CarCard key={car.id} {...car} currentDriver={currentDriver}/>)
+      const mappedCars = cars.map(car => (
+        <Col key={car.id} xs={12} sm={6} md={4} lg={3} xl={2}>
+          <CarCard key={car.id} {...car} currentDriver={currentDriver}/>
+        </Col>
+      ))
     
   return (
     <div>
-        
     {mappedCars}
     </div>
+      
   )
 }
 
