@@ -84,8 +84,11 @@ function App() {
 
 if (!currentDriver) {
   return (
-  <><img src="https://wallpapercave.com/wp/wp7611213.jpg" alt="!"/>
-    {showLoginForm ? <LoginForm saveDriver={saveDriver} handleToggleForm={handleToggleForm}/> : <NewUserForm saveDriver={saveDriver} handleToggleForm={handleToggleForm}/>}
+  <>
+  <navbar style={{ backgroundColor: 'black' }}>
+    {!showLoginForm ? <LoginForm saveDriver={saveDriver} handleToggleForm={handleToggleForm}/> : <NewUserForm saveDriver={saveDriver} handleToggleForm={handleToggleForm}/>}
+  </navbar>
+  <img src="https://wallpapercave.com/wp/wp7611213.jpg" alt="!"/>
   </>
   )
   }  

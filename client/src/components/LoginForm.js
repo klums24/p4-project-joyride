@@ -65,7 +65,7 @@ function LoginForm({saveDriver, handleToggleForm}) {
         
         </form>
         <button onClick={handleToggleForm}>
-        Sign up to create new account
+        Create new account
         </button>
       </>
       )
