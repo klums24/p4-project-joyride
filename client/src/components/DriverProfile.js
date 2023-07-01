@@ -51,15 +51,16 @@ const handleDelete = (e) => {
 
   return (
     <div>
-      <header>
+       <header> 
+        Welcome to JoyRide, {currentDriver.first_name}!
+        </header>
         <navbar>
           <Button variant='secondary' onClick={()=>history.go(-1)}>Go Back</Button>
           <Button variant='secondary' onClick={handleSignoutClick}>Signout</Button>
           <Button variant='secondary'onClick={handleDelete}> Delete account</Button>
         </navbar>
-      </header>
+      
       <Container>
-        <header> Welcome to JoyRide, {currentDriver.first_name}! </header>
           <Card.Img variant="top" src={profile_picture}/>
           <Card.Title>Name: {first_name}</Card.Title>
           <Card.Text>Age: {age} years old</Card.Text>
