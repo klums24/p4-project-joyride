@@ -42,7 +42,7 @@ function LoginForm({saveDriver, handleToggleForm}) {
     });
     return (
       <>
-        <form onSubmit={formik.handleSubmit}>
+        <form class="form-text" onSubmit={formik.handleSubmit}>
             <label htmlFor="email">Email:</label>
             <input
                 id="email"
@@ -52,7 +52,7 @@ function LoginForm({saveDriver, handleToggleForm}) {
                 value={formik.values.email}
             />
             
-            <label htmlFor="password">Password:</label>
+            <label class="form-text" htmlFor="password">Password:</label>
             <input
                 id="password"
                 name="password"
