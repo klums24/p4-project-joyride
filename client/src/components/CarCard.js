@@ -2,10 +2,13 @@ import React from 'react'
 import { Col, Button, Card } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
 
-function CarCard({make, model, year, picture, id, currentDriver}) {
+function CarCard({make, model, year, picture, id, currentDriver, addCarToUser}) {
 
   const checkUserCar = () => {
     return currentDriver.drives.some(drive => drive.car_id === id)
+  }
+  const handleAddCar = (new_car_id) => {
+    addCarToUser(new_car_id)
   }
     return (
         <Col>
@@ -17,7 +20,7 @@ function CarCard({make, model, year, picture, id, currentDriver}) {
               <Card.Title className="fs-3">Model: {model}</Card.Title>
               <Card.Title className="fs-3">Year: {year}</Card.Title>
               {/* <Card.Title className="fs-10 text-mute"> Display Cars </Card.Title> */}
-              {checkUserCar() ? null: <Link to={`/cars/${id}`}> <Button variant="primary"> Drive Me! </Button> </Link>}
+               {checkUserCar() ? null: <Link to={`/cars/${id}`}> <Button variant="primary" handleClick={handleAddCar} > Drive Me! </Button> </Link>}         
             </Card.Body>
           </Card>
         </Col> 

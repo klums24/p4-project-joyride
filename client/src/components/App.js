@@ -15,7 +15,7 @@ function App() {
 
   const [showLoginForm, setShowLoginForm] = useState(false)
   const [currentDriver, setCurrentDriver] = useState(null)
-  const [newCar, setNewCar] = useState(null) //bug in this line
+  const [newCar, setNewCar] = useState(null) //bug in this li
   const [cars, setCars] = useState([])
   const [drives, setDrives] = useState([])
   
@@ -42,8 +42,13 @@ function App() {
     })
 }, []) 
 
-    
-  
+
+
+
+
+
+
+
   const saveNewCar = (new_car) => {
     setNewCar(new_car)
   }

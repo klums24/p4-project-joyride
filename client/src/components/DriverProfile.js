@@ -7,7 +7,7 @@ import UpdateProfileForm from './UpdateProfileForm'
 import NewCarForm from './NewCarForm'
 import NewDriveForm from './NewDriveForm'
 
-function DriverProfile({currentDriver, handleSignoutClick, saveDriver, saveNewCar, setCars, saveNewDrive, addDriveToUser}) {
+function DriverProfile({currentDriver, handleSignoutClick, saveDriver, saveNewCar, setCars, saveNewDrive, addDriveToUser, }) {
   const history = useHistory()
   const [seeForm, setSeeForm] = useState(false) //profile update
   const [seeCreateCar, setCreateCar] = useState(false)
