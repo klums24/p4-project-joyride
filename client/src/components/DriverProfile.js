@@ -51,20 +51,22 @@ const handleDelete = (e) => {
 
   return (
     <div>
-      <header>
+      <header> 
+        Welcome to JoyRide, {currentDriver.first_name}!
+      </header>
         <navbar>
           <Button variant='secondary' onClick={()=>history.go(-1)}>Go Back</Button>
           <Button variant='secondary' onClick={handleSignoutClick}>Signout</Button>
           <Button variant='secondary'onClick={handleDelete}> Delete account</Button>
         </navbar>
-      </header>
+      
       <Container>
-        <header> Welcome to JoyRide, {currentDriver.first_name}! </header>
           <Card.Img variant="top" src={profile_picture}/>
           <Card.Title>Name: {first_name}</Card.Title>
           <Card.Text>Age: {age} years old</Card.Text>
             <Button variant='secondary' onClick={toggleForm}>Edit your profile</Button>
             <Button variant='secondary' onClick={()=>history.push("/drivers")}>See all drivers</Button>
+            <Button variant='secondary' onClick={()=>history.push("/cars")}>See all cars</Button>
             
             
             {seeForm? <UpdateProfileForm currentDriver={currentDriver} saveDriver={saveDriver}/> : null}
@@ -72,8 +74,10 @@ const handleDelete = (e) => {
             {seeCreateCar ? <NewCarForm seeCreateCar={seeCreateCar} saveNewCar={saveNewCar} setCars={setCars} addDriveToUser={addDriveToUser}/> : null}
             <Button variant='secondary' onClick={toggleDriveForm}>Create a new drive!</Button>
             {seeDriveForm ? <NewDriveForm seeDriveForm={seeDriveForm} saveNewDrive={saveNewDrive} setNewDrive={setNewDrive} currentDriver={currentDriver} addDriveToUser={addDriveToUser}/> : null}
-      </Container> 
+      </Container>
+      <Row>
       {mappedCars}
+      </Row> 
       </div> 
   )
 }
