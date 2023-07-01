@@ -51,7 +51,7 @@ function NewCarForm({addDriveToUser, handleToggleForm, setCars}) {
     });
     return (
         <div>
-        <form onSubmit={formik.handleSubmit}>
+        <form class="form-text" onSubmit={formik.handleSubmit}>
             <label htmlFor="make">Make:</label>
             <input
                 id="make"
@@ -61,7 +61,7 @@ function NewCarForm({addDriveToUser, handleToggleForm, setCars}) {
                 value={formik.values.make}
             />
 
-            <label htmlFor="model">Model:</label>
+            <label class="form-text" htmlFor="model">Model:</label>
             <input
                 id="model"
                 name="model"
@@ -70,7 +70,7 @@ function NewCarForm({addDriveToUser, handleToggleForm, setCars}) {
                 value={formik.values.model}
             />
 
-            <label htmlFor="year">year:</label>
+            <label class="form-text" htmlFor="year">year:</label>
             <input
                 id="year"
                 name="year"
@@ -79,7 +79,7 @@ function NewCarForm({addDriveToUser, handleToggleForm, setCars}) {
                 value={formik.values.year}
             />
 
-            <label htmlFor="picture">Picture:</label>
+            <label class="form-text" htmlFor="picture">Picture:</label>
             <input
                 id="picture"
                 name="picture"
@@ -87,10 +87,10 @@ function NewCarForm({addDriveToUser, handleToggleForm, setCars}) {
                 onChange={formik.handleChange}
                 value={formik.values.picture}
             />
-            <button type="submit">Submit</button>
+            <button class="button" type="submit">Submit</button>
 
         </form>
-        <button onClick={handleToggleForm}>
+        <button class="button"onClick={handleToggleForm}>
         Create a New Car
         </button>
         </div>

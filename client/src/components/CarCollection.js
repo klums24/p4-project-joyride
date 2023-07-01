@@ -16,9 +16,9 @@ function CarCollection({cars, currentDriver, handleSignoutClick}) {
   return (
     <div>
       <navbar>
-        <Button variant='secondary' onClick={()=>history.push("/")}>My profile</Button>
-        <Button variant='secondary' onClick={()=>history.push("/drivers")}>See all drivers</Button>
-        <Button variant='secondary' onClick={handleSignoutClick}>Signout</Button>
+        <button class="button" variant='secondary' onClick={()=>history.push("/")}>My profile</button>
+        <button class="button" variant='secondary' onClick={()=>history.push("/drivers")}>See all drivers</button>
+        <button class="button" variant='secondary' onClick={handleSignoutClick}>Signout</button>
       </navbar>
     {mappedCars}
     </div>

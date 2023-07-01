@@ -128,11 +128,11 @@ function NewUserForm({saveDriver, handleToggleForm}) {
                 value={formik.values.profile_picture}
             />
 
-            <button type="submit">Submit2</button>
+            <button class="button" type="submit">Submit</button>
 
         </form>
-        <button onClick={handleToggleForm}>
-        Login to your account
+        <button class="button" onClick={handleToggleForm}>
+        Already have an account?
         </button>
         </div>
     )

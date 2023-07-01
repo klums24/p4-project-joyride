@@ -28,8 +28,10 @@
     background-color: #f4a852;
     padding: 20px;
   } */
+    
 
   .form-container {
+    font-family: 'Kanit', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,6 +39,7 @@
   }
 
   .car-card {
+    font-family: 'Kanit', sans-serif;
     width: 18rem;
     margin: 10px;
     /* Add other desired styles */
@@ -49,14 +52,29 @@
   }
   
   .car-details {
+    font-family: 'Kanit', sans-serif;
     text-align: auto;
   }
+
+  .button {
+    font-family: 'Kanit', sans-serif;
+  }
+
+  .welcome-message{
+    font-family: 'Kanit', sans-serif;
+  }
+
+  .form-text{
+    font-family: 'Kanit', sans-serif;
+  }
   
-  .drive-button {
+  
+  /* .drive-button {
+    font-family: 'Kanit', sans-serif;
     background-color: #ff9100;
     color: white;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     /* Add other desired styles */
-  }
+  /* } */
