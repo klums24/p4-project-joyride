@@ -4,21 +4,10 @@ import { Link, useLocation } from 'react-router-dom';
 import "./style.css"
 function CarCard({make, model, year, picture, id, currentDriver}) {
 
-  const checkUserCar = () => {
-    return currentDriver.drives.some(drive => drive.car_id === id)
-  }
+  // const checkUserCar = () => {
+  //   return currentDriver.drives.some(drive => drive.car_id === id)
+  // }
 
-  const cardStyle = {
-    width: '18rem',
-    margin: '10px',
-    // Add other desired styles
-  };
-
-  const imageStyle = {
-    height: '250px',
-    width: '250px',
-    // Add other desired styles
-  };
       // return (
       //   <Card style={cardStyle}>
       //     <Card.Img src={picture} alt="name" style={imageStyle} />
@@ -39,7 +28,7 @@ function CarCard({make, model, year, picture, id, currentDriver}) {
             <h3>Model: {model}</h3>
             <h3>Year: {year}</h3>
             <h3>Car Id: {id}</h3>
-            <button className="drive-button">Drive Me!</button>
+            {/* <button className="drive-button">Drive Me!</button> */}
           </div>
         </div>
       );

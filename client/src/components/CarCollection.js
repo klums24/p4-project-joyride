@@ -1,21 +1,11 @@
 import React, {useState, useEffect} from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import {Card, Button, Row, Col, Container} from 'react-bootstrap'
+import {useHistory, Link} from 'react-router-dom'
 import CarCard from './CarCard'
 
-function CarCollection({cars, currentDriver}) {
+function CarCollection({cars, currentDriver, handleSignoutClick}) {
 
-    
-
-    // useEffect(() => {
-    //     fetch("/api/v1/cars")
-    //     .then(response => response.json())
-    //     .then(data => {
-    //       setCars(data)
-
-          
-    //     })
-    // }, []) 
-
+  const history = useHistory()
 
       const mappedCars = cars.map(car => (
         <Col key={car.id} xs={12} sm={6} md={4} lg={3} xl={2}>
@@ -25,6 +15,11 @@ function CarCollection({cars, currentDriver}) {
     
   return (
     <div>
+      <navbar>
+        <Button variant='secondary' onClick={()=>history.push("/")}>My profile</Button>
+        <Button variant='secondary' onClick={()=>history.push("/drivers")}>See all drivers</Button>
+        <Button variant='secondary' onClick={handleSignoutClick}>Signout</Button>
+      </navbar>
     {mappedCars}
     </div>
       
