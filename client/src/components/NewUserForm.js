@@ -56,7 +56,7 @@ function NewUserForm({saveDriver, handleToggleForm}) {
     return (
         <div>
         <form onSubmit={formik.handleSubmit}>
-            <label htmlFor="first_name">First Name:</label>
+            <label class="form-text" htmlFor="first_name">First Name:</label>
             <input
                 id="first_name"
                 name="first_name"
@@ -65,7 +65,7 @@ function NewUserForm({saveDriver, handleToggleForm}) {
                 value={formik.values.first_name}
             />
 
-            <label htmlFor="last_name">Last Name:</label>
+            <label class="form-text" htmlFor="last_name">Last Name:</label>
             <input
                 id="last_name"
                 name="last_name"
@@ -74,7 +74,7 @@ function NewUserForm({saveDriver, handleToggleForm}) {
                 value={formik.values.last_name}
             />
 
-            <label htmlFor="email">Email:</label>
+            <label class="form-text" htmlFor="email">Email:</label>
             <input
                 id="email"
                 name="email"
@@ -83,7 +83,7 @@ function NewUserForm({saveDriver, handleToggleForm}) {
                 value={formik.values.email}
             />
 
-            <label htmlFor="password">Password:</label>
+            <label class="form-text" htmlFor="password">Password:</label>
             <input
                 id="password"
                 name="password"
@@ -92,7 +92,7 @@ function NewUserForm({saveDriver, handleToggleForm}) {
                 value={formik.values.password}
             />
 
-            <label htmlFor="user_name">User Name:</label>
+            <label class="form-text" htmlFor="user_name">User Name:</label>
             <input
                 id="user_name"
                 name="user_name"
@@ -101,7 +101,7 @@ function NewUserForm({saveDriver, handleToggleForm}) {
                 value={formik.values.user_name}
             />
 
-            <label htmlFor="age">Age:</label>
+            <label class="form-text" htmlFor="age">Age:</label>
             <input
                 id="age"
                 name="age"
@@ -110,7 +110,7 @@ function NewUserForm({saveDriver, handleToggleForm}) {
                 value={formik.values.age}
             />
 
-            <label htmlFor="zip_code">Zip Code:</label>
+            <label class="form-text" htmlFor="zip_code">Zip Code:</label>
             <input
                 id="zip_code"
                 name="zip_code"
@@ -119,7 +119,7 @@ function NewUserForm({saveDriver, handleToggleForm}) {
                 value={formik.values.zip_code}
             />
 
-            <label htmlFor="profile_picture">Profile Picture URL:</label>
+            <label class="form-text" htmlFor="profile_picture">Profile Picture URL:</label>
             <input
                 id="profile_picture"
                 name="profile_picture"

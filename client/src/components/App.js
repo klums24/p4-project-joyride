@@ -85,7 +85,9 @@ function App() {
 if (!currentDriver) {
   return (
   <>
-  <header class="welcome-message">JOY RIDE</header>
+  <header class="welcome-message">
+    >>>>>>>>>>>>>>>>>>>>>>>JOY RIDE>>>>>>>>>>>>>>>>>>>>>>>> 
+  </header>
   <navbar>
     {!showLoginForm ? <LoginForm saveDriver={saveDriver} handleToggleForm={handleToggleForm}/> : <NewUserForm saveDriver={saveDriver} handleToggleForm={handleToggleForm}/>}
   </navbar>
