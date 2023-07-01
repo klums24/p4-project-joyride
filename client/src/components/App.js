@@ -96,7 +96,7 @@ if (!currentDriver) {
     <div>
       <Switch>
         <Route path = '/drivers'>
-          <DriverCollection />
+          <DriverCollection handleSignoutClick={handleSignoutClick}/>
         </Route>
         <Route exact path = '/'>
           <DriverProfile currentDriver={currentDriver} handleSignoutClick={handleSignoutClick} saveDriver={saveDriver} saveNewCar={saveNewCar} setCars={setCars} saveNewDrive={saveNewDrive} addDriveToUser={addDriveToUser}/>
@@ -105,7 +105,7 @@ if (!currentDriver) {
           <LoggedIn handleSignoutClick={handleSignoutClick}/>
         </Route> */}
         <Route path="/cars">
-          <CarCollection cars={cars} setCars={setCars} currentDriver={currentDriver}/>
+          <CarCollection cars={cars} setCars={setCars} currentDriver={currentDriver}handleSignoutClick={handleSignoutClick}/>
         </Route>
       </Switch>
     </div>

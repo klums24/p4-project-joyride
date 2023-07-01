@@ -1,9 +1,12 @@
-import {useEffect, useState} from 'react'
-import DriverCard from './DriverCard'; 
-// import NavBar from './NavBar';
+import React, {useState, useEffect} from 'react'
+import DriverCard from './DriverCard';
+import {Card, Button, Row, Col, Container} from 'react-bootstrap'
+import {useHistory, Link} from 'react-router-dom'
 
-function DriverCollection() {
 
+function DriverCollection({handleSignoutClick}) {
+
+  const history = useHistory()
   const [drivers, setDrivers] = useState([]);
 
     useEffect(() => {
@@ -19,7 +22,11 @@ function DriverCollection() {
   return (
 
     <div>
-      {/* <NavBar/> */}
+      <navbar>
+        <Button variant='secondary' onClick={()=>history.push("/")}>My profile</Button>
+        <Button variant='secondary' onClick={()=>history.push("/cars")}>See all cars</Button>
+        <Button variant='secondary' onClick={handleSignoutClick}>Signout</Button>
+        </navbar>
       {mappedDrivers}
     </div>
   )

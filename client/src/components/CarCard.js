@@ -17,7 +17,7 @@ function CarCard({make, model, year, picture, id, currentDriver}) {
               <Card.Title className="fs-3">Model: {model}</Card.Title>
               <Card.Title className="fs-3">Year: {year}</Card.Title>
               {/* <Card.Title className="fs-10 text-mute"> Display Cars </Card.Title> */}
-              {checkUserCar() ? null: <Link to={`/cars/${id}`}> <Button variant="primary"> Drive Me! </Button> </Link>}
+              {/* {checkUserCar() ? null: <Link to={`/cars/${id}`}> <Button variant="primary"> Drive Me! </Button> </Link>} */}
             </Card.Body>
           </Card>
         </Col> 
