@@ -45,7 +45,7 @@ function NewDriveForm({handleToggleForm, setNewDrive, currentDriver, addDriveToU
     });
     return (
         <div>
-        <form onSubmit={formik.handleSubmit}>
+        <form class="form-text" onSubmit={formik.handleSubmit}>
             <label htmlFor="car_id">car_id:</label>
             <input
                 id="car_id"
@@ -54,7 +54,7 @@ function NewDriveForm({handleToggleForm, setNewDrive, currentDriver, addDriveToU
                 onChange={formik.handleChange}
                 value={formik.values.car_id} 
             />
-            <label htmlFor="details">details:</label>
+            <label class="form-text" htmlFor="details">details:</label>
             <input
                 id="details"
                 name="details"
@@ -89,10 +89,10 @@ function NewDriveForm({handleToggleForm, setNewDrive, currentDriver, addDriveToU
                 onChange={formik.handleChange}
                 value={formik.values.picture}
             /> */}
-            <button type="submit">Submit</button>
+            <button class="button" type="submit">Submit</button>
 
         </form>
-        <button onClick={handleToggleForm}>
+        <button class="button" onClick={handleToggleForm}>
         Create a New Car
         </button>
         </div>

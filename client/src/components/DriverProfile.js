@@ -50,34 +50,29 @@ const handleDelete = (e) => {
 
   return (
     <div>
-      <header> 
+      <header class="form-text"> 
         Welcome to JoyRide, {currentDriver.first_name}!
       </header>
         <navbar>
-        <Button variant='secondary' onClick={()=>history.push("/drivers")}>See all drivers</Button>
-        <Button variant='secondary' onClick={()=>history.push("/cars")}>See all cars</Button>
-        <Button variant='secondary' onClick={handleSignoutClick}>Signout</Button>
+        <button class="button" variant='secondary' onClick={()=>history.push("/drivers")}>See all drivers</button>
+        <button class="button" variant='secondary' onClick={()=>history.push("/cars")}>See all cars</button>
+        <button class="button" variant='secondary' onClick={handleSignoutClick}>Signout</button>
         </navbar>
       
       <Container>
           <Card.Img variant="top" src={profile_picture}/>
-          <Card.Title>Name: {first_name}</Card.Title>
-          <Card.Text>Age: {age} years old</Card.Text>
-            <Button variant='secondary' onClick={toggleForm}>Edit your profile</Button>
-
-            
-            
-            {seeForm? <UpdateProfileForm currentDriver={currentDriver} saveDriver={saveDriver}/> : null}
-            <Button variant='secondary' onClick={toggleCarForm}>Create a new car</Button>
-            {seeCreateCar ? <NewCarForm seeCreateCar={seeCreateCar} saveNewCar={saveNewCar} setCars={setCars} addDriveToUser={addDriveToUser}/> : null}
-            <Button variant='secondary' onClick={toggleDriveForm}>Create a new drive!</Button>
-            {seeDriveForm ? <NewDriveForm seeDriveForm={seeDriveForm} saveNewDrive={saveNewDrive} setNewDrive={setNewDrive} currentDriver={currentDriver} addDriveToUser={addDriveToUser}/> : null}
+          <Card.Title class="form-text">Name: {first_name}</Card.Title>
+          <Card.Text class="form-text">Age: {age} years old</Card.Text>
+          <button class="button" variant='secondary' onClick={toggleForm}>Edit your profile</button>
+          {seeForm? <UpdateProfileForm currentDriver={currentDriver} saveDriver={saveDriver}/> : null}
+          <button class="button" variant='secondary' onClick={toggleCarForm}>Create a new car</button>
+          {seeCreateCar ? <NewCarForm seeCreateCar={seeCreateCar} saveNewCar={saveNewCar} setCars={setCars} addDriveToUser={addDriveToUser}/> : null}
+          <button class="button" variant='secondary' onClick={toggleDriveForm}>Create a new drive!</button>
+          {seeDriveForm ? <NewDriveForm seeDriveForm={seeDriveForm} saveNewDrive={saveNewDrive} setNewDrive={setNewDrive} currentDriver={currentDriver} addDriveToUser={addDriveToUser}/> : null}
       </Container>
-      <Row>
       {mappedCars}
-      </Row>
       <footer>
-      <Button variant='secondary'onClick={handleDelete}> Delete account</Button>
+      <button class="button" variant='secondary'onClick={handleDelete}> Delete account</button>
       </footer> 
       </div> 
   )

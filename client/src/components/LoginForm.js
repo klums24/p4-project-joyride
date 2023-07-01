@@ -61,10 +61,10 @@ function LoginForm({saveDriver, handleToggleForm}) {
                 value={formik.values.password}
             />
             
-          <button type="submit">Login</button>
+          <button class="button" type="submit">Login</button>
         
         </form>
-        <button onClick={handleToggleForm}>
+        <button class="button" onClick={handleToggleForm}>
         Create new account
         </button>
       </>

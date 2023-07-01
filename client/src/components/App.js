@@ -85,7 +85,8 @@ function App() {
 if (!currentDriver) {
   return (
   <>
-  <navbar style={{ backgroundColor: 'black' }}>
+  <header class="welcome-message">JOY RIDE</header>
+  <navbar>
     {!showLoginForm ? <LoginForm saveDriver={saveDriver} handleToggleForm={handleToggleForm}/> : <NewUserForm saveDriver={saveDriver} handleToggleForm={handleToggleForm}/>}
   </navbar>
   <img src="https://wallpapercave.com/wp/wp7611213.jpg" alt="!"/>
