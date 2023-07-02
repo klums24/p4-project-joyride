@@ -71,7 +71,9 @@ const handleDelete = (e) => {
           {seeDriveForm ? <NewDriveForm seeDriveForm={seeDriveForm} saveNewDrive={saveNewDrive} setNewDrive={setNewDrive} currentDriver={currentDriver} addDriveToUser={addDriveToUser}/> : null}
       </Container>
       <h2 class="form-text">My joy rides:</h2>
+      <div class="container">
       {mappedCars}
+      </div>
       <footer>
       <button class="button" variant='secondary'onClick={handleDelete}> Delete account</button>
       </footer> 

@@ -21,7 +21,9 @@ function CarCollection({cars, currentDriver, handleSignoutClick}) {
         <button class="button" variant='secondary' onClick={handleSignoutClick}>Signout</button>
       </navbar>
       <h3 class="form-text">BROWSE CARS</h3>
-    {mappedCars}
+      <div class="container">
+        {mappedCars}
+      </div>
     </div>
       
   )
