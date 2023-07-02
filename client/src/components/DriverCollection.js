@@ -28,7 +28,9 @@ function DriverCollection({handleSignoutClick}) {
         <button class="button" variant='secondary' onClick={handleSignoutClick}>Signout</button>
         </navbar>
       <h3 class="form-text">ALL DRIVERS</h3>
+      <div class="container">
       {mappedDrivers}
+      </div>
     </div>
   )
 }
