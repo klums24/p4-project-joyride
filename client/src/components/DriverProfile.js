@@ -50,8 +50,8 @@ const handleDelete = (e) => {
 
   return (
     <div>
-      <header class="form-text"> 
-        Welcome to JoyRide, {currentDriver.first_name}!
+      <header> 
+      <h3 class="form-text">WELCOME TO JOY RIDE, {currentDriver.first_name}!</h3>
       </header>
         <navbar>
         <button class="button" variant='secondary' onClick={()=>history.push("/drivers")}>See all drivers</button>
@@ -70,6 +70,7 @@ const handleDelete = (e) => {
           <button class="button" variant='secondary' onClick={toggleDriveForm}>Create a new drive!</button>
           {seeDriveForm ? <NewDriveForm seeDriveForm={seeDriveForm} saveNewDrive={saveNewDrive} setNewDrive={setNewDrive} currentDriver={currentDriver} addDriveToUser={addDriveToUser}/> : null}
       </Container>
+      <h2 class="form-text">My joy rides:</h2>
       {mappedCars}
       <footer>
       <button class="button" variant='secondary'onClick={handleDelete}> Delete account</button>

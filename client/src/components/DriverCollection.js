@@ -23,10 +23,11 @@ function DriverCollection({handleSignoutClick}) {
 
     <div>
       <navbar>
-        <Button variant='secondary' onClick={()=>history.push("/")}>My profile</Button>
-        <Button variant='secondary' onClick={()=>history.push("/cars")}>See all cars</Button>
-        <Button variant='secondary' onClick={handleSignoutClick}>Signout</Button>
+        <button class="button" variant='secondary' onClick={()=>history.push("/")}>My profile</button>
+        <button class="button" variant='secondary' onClick={()=>history.push("/cars")}>See all cars</button>
+        <button class="button" variant='secondary' onClick={handleSignoutClick}>Signout</button>
         </navbar>
+      <h3 class="form-text">ALL DRIVERS</h3>
       {mappedDrivers}
     </div>
   )

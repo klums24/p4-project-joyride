@@ -20,6 +20,7 @@ function CarCollection({cars, currentDriver, handleSignoutClick}) {
         <button class="button" variant='secondary' onClick={()=>history.push("/drivers")}>See all drivers</button>
         <button class="button" variant='secondary' onClick={handleSignoutClick}>Signout</button>
       </navbar>
+      <h3 class="form-text">BROWSE CARS</h3>
     {mappedCars}
     </div>
       
