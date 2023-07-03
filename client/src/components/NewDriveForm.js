@@ -6,9 +6,10 @@ import * as yup from "yup";
 function NewDriveForm({handleToggleForm, setNewDrive, currentDriver, addDriveToUser}){
 
     const userSchema = yup.object({
-        details: yup.string().required("Describe your drive"),
-        
+        details: yup.string().required("Please describe your drive"),
+        car_id: yup.string().required("Please enter the car ID")
     })
+    
     const formik = useFormik ({
         initialValues: {
             details: "",
@@ -43,61 +44,44 @@ function NewDriveForm({handleToggleForm, setNewDrive, currentDriver, addDriveToU
             })
         },
     });
+
+    
+
     return (
         <div>
-        <form class="form-text" onSubmit={formik.handleSubmit}>
-            <label htmlFor="car_id">car_id:</label>
+          <form className="form-text" onSubmit={formik.handleSubmit}>
+            <label htmlFor="car_id">Car ID:</label>
             <input
-                id="car_id"
-                name="car_id"
-                type="text"
-                onChange={formik.handleChange}
-                value={formik.values.car_id} 
+              id="car_id"
+              name="car_id"
+              type="text"
+              onChange={formik.handleChange}
+              value={formik.values.car_id}
             />
-            <label class="form-text" htmlFor="details">details:</label>
-            <input
-                id="details"
-                name="details"
-                type="text"
-                onChange={formik.handleChange}
-                value={formik.values.details} 
-            />
-
-            {/* <label htmlFor="model">Model:</label>
-            <input
-                id="model"
-                name="model"
-                type="text"
-                onChange={formik.handleChange}
-                value={formik.values.model} */}
-            {/* />
-
-            <label htmlFor="year">year:</label>
-            <input
-                id="year"
-                name="year"
-                type="text"
-                onChange={formik.handleChange}
-                value={formik.values.year}
-            /> */}
-{/* 
-            <label htmlFor="picture">Picture:</label>
-            <input
-                id="picture"
-                name="picture"
-                type="text"
-                onChange={formik.handleChange}
-                value={formik.values.picture}
-            /> */}
-            <button class="button" type="submit">Submit</button>
-
-        </form>
-        {/* <button class="button" onClick={handleToggleForm}>
-        Create a New Car
-        </button> */}
-        </div>
-    )
+            {formik.touched.car_id && formik.errors.car_id ? (
+              <div className="error">{formik.errors.car_id}</div>
+            ) : null}
     
-}
-
-export default NewDriveForm
+            <label className="form-text" htmlFor="details">
+              Details:
+            </label>
+            <input
+              id="details"
+              name="details"
+              type="text"
+              onChange={formik.handleChange}
+              value={formik.values.details}
+            />
+            {formik.touched.details && formik.errors.details ? (
+              <div className="error">{formik.errors.details}</div>
+            ) : null}
+    
+            <button className="button" type="submit">
+              Submit
+            </button>
+          </form>
+        </div>
+      );
+    }
+    
+    export default NewDriveForm;

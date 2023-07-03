@@ -40,35 +40,47 @@ function LoginForm({saveDriver, handleToggleForm}) {
           })
         },
     });
+    
     return (
       <>
         <form class="form-text" onSubmit={formik.handleSubmit}>
-            <label htmlFor="email">Email:</label>
-            <input
-                id="email"
-                name="email"
-                type="text"
-                onChange={formik.handleChange}
-                value={formik.values.email}
-            />
-            
-            <label class="form-text" htmlFor="password">Password:</label>
-            <input
-                id="password"
-                name="password"
-                type="password"
-                onChange={formik.handleChange}
-                value={formik.values.password}
-            />
-            
-          <button class="button" type="submit">Login</button>
-        
+          <label htmlFor="email">Email:</label>
+          <input
+            id="email"
+            name="email"
+            type="text"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.email}
+          />
+          {formik.touched.email && formik.errors.email && (
+            <div className="error">{formik.errors.email}</div>
+          )}
+  
+          <label class="form-text" htmlFor="password">
+            Password:
+          </label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.password}
+          />
+          {formik.touched.password && formik.errors.password && (
+            <div className="error">{formik.errors.password}</div>
+          )}
+  
+          <button class="button" type="submit">
+            Login
+          </button>
         </form>
         <button class="button" onClick={handleToggleForm}>
-        Create new account
+          Create new account
         </button>
       </>
-      )
+      );
     }
     
     export default LoginForm;

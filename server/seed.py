@@ -52,28 +52,28 @@ def create_drives(cars, drivers):
     return drives
 
 if __name__ == '__main__':
-    fake = Faker()
+    # fake = Faker()
     with app.app_context():
-        print("Deleting database...")
+    #     print("Deleting database...")
         
-        Car.query.delete()
-        Driver.query.delete()
+    #     Car.query.delete()
+    #     Driver.query.delete()
+    #     Drive.query.delete()
+
+    #     print("Seeding cars...")
+    #     cars = create_cars()
+    #     db.session.add_all(cars)
+    #     db.session.commit()
+
+    #     print("Seeding drivers...")
+    #     drivers = create_drivers()
+    #     db.session.add_all(drivers)
+    #     db.session.commit()
+
+    #     print("Seeding drives...")
+    #     drives = create_drives(cars, drivers)
+    #     db.session.add_all(drives)
+    #     db.session.commit()
+    #     print('complete')
         Drive.query.delete()
-
-        print("Seeding cars...")
-        cars = create_cars()
-        db.session.add_all(cars)
         db.session.commit()
-
-        print("Seeding drivers...")
-        drivers = create_drivers()
-        db.session.add_all(drivers)
-        db.session.commit()
-
-        print("Seeding drives...")
-        drives = create_drives(cars, drivers)
-        db.session.add_all(drives)
-        db.session.commit()
-        print('complete')
-        
-        

@@ -154,6 +154,6 @@ class Driver(db.Model, SerializerMixin):
     
     @validates('password')
     def password_valid(self, key, current_password):
-        if not current_password or not type(str) and len(current_password) >4:
+        if not current_password or not type(str) and len(current_password) > 8:
             raise ValueError("Invalid password")
         return current_password
