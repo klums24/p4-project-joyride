@@ -34,7 +34,7 @@ function LoginForm({saveDriver, handleToggleForm}) {
             else {
               resp.json()
               .then(error => {
-                alert("THIS IS WRONG",error.error)
+                alert("Login Error",error.error)
               })
             }
           })

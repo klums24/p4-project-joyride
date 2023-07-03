@@ -51,7 +51,7 @@ const handleDelete = (e) => {
   return (
     <div>
       <header> 
-      <h3 class="form-text">WELCOME TO JOY RIDE, {currentDriver.first_name}!</h3>
+      <h3 class="form-text">WELCOME TO JOYRIDE, {currentDriver.first_name}!</h3>
       </header>
         <navbar class="container">
         <button class="button" variant='secondary' onClick={()=>history.push("/drivers")}>See all drivers</button>
@@ -61,7 +61,7 @@ const handleDelete = (e) => {
       
       <Container>
         <Card>
-          <img variant="top" src={profile_picture} alt="profile-pic"/>
+          <img class="profile-page-image" variant="top" src={profile_picture} alt="profile-pic"/>
           <Card.Title class="form-text">Name: {first_name}</Card.Title>
           <Card.Text class="form-text">Age: {age} years old</Card.Text>
           <card class="container">
