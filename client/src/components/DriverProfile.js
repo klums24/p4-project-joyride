@@ -53,22 +53,26 @@ const handleDelete = (e) => {
       <header> 
       <h3 class="form-text">WELCOME TO JOY RIDE, {currentDriver.first_name}!</h3>
       </header>
-        <navbar>
+        <navbar class="container">
         <button class="button" variant='secondary' onClick={()=>history.push("/drivers")}>See all drivers</button>
         <button class="button" variant='secondary' onClick={()=>history.push("/cars")}>See all cars</button>
         <button class="button" variant='secondary' onClick={handleSignoutClick}>Signout</button>
         </navbar>
       
       <Container>
-          <Card.Img variant="top" src={profile_picture}/>
+        <Card>
+          <img variant="top" src={profile_picture} alt="profile-pic"/>
           <Card.Title class="form-text">Name: {first_name}</Card.Title>
           <Card.Text class="form-text">Age: {age} years old</Card.Text>
+          <card class="container">
           <button class="button" variant='secondary' onClick={toggleForm}>Edit your profile</button>
           {seeForm? <UpdateProfileForm currentDriver={currentDriver} saveDriver={saveDriver}/> : null}
           <button class="button" variant='secondary' onClick={toggleCarForm}>Create a new car</button>
           {seeCreateCar ? <NewCarForm seeCreateCar={seeCreateCar} saveNewCar={saveNewCar} setCars={setCars} addDriveToUser={addDriveToUser}/> : null}
           <button class="button" variant='secondary' onClick={toggleDriveForm}>Create a new drive!</button>
           {seeDriveForm ? <NewDriveForm seeDriveForm={seeDriveForm} saveNewDrive={saveNewDrive} setNewDrive={setNewDrive} currentDriver={currentDriver} addDriveToUser={addDriveToUser}/> : null}
+          </card>
+          </Card>
       </Container>
       <h2 class="form-text">My joy rides:</h2>
       <div class="container">
