@@ -23,6 +23,7 @@ def create_cars():
     return cars
 
 
+
 def create_drivers():
     drivers = []
     for _ in range(5):
@@ -69,7 +70,7 @@ if __name__ == '__main__':
         drivers = create_drivers()
         db.session.add_all(drivers)
         db.session.commit()
-
+        
         print("Seeding drives...")
         drives = create_drives(cars, drivers)
         db.session.add_all(drives)
