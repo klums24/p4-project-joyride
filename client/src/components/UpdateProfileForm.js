@@ -42,7 +42,7 @@ function UpdateProfileForm({currentDriver, saveDriver}) {
     return (
       <>
         <form onSubmit={formik.handleSubmit}>
-            <label htmlFor="email">Email:</label>
+            <label class="form-text" htmlFor="email">Email:</label>
             <input
                 id="email"
                 name="email"
@@ -51,7 +51,7 @@ function UpdateProfileForm({currentDriver, saveDriver}) {
                 value={formik.values.email}
             />
             
-            <label htmlFor="profile_picture">Profile picture:</label>
+            <label class="form-text" htmlFor="profile_picture">Profile picture:</label>
             <input
                 id="profile_picture"
                 name="profile_picture"
@@ -60,7 +60,7 @@ function UpdateProfileForm({currentDriver, saveDriver}) {
                 value={formik.values.profile_picture}
             />
             
-          <button type="submit">Update</button>
+          <button class="button" type="submit">Update</button>
         
         </form>
       </>
