@@ -1,6 +1,7 @@
 import { Col, Button, Card, Modal } from 'react-bootstrap';
 import { useState } from 'react';
 
+//Made an attempt to incorporate Modal
 function WelcomeToJoyride() {
     const [show, setShow] = useState(false);
   

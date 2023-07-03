@@ -13,7 +13,8 @@ function DriverCard({first_name, age, zip_code, profile_picture, id }) {
           <Card.Title class="form-text">{first_name}</Card.Title>
           <Card.Title class="form-text">{zip_code}</Card.Title>
           <Card.Title class="form-text">{age > 1? age + " years old" : age + " year old"} </Card.Title>
-          <Link to={`/drivers/${id}`}> <button class="button" variant="primary"> See Profile </button> </Link>{' '}
+          {/* Will implement See Profile feature in the future */}
+          {/* <Link to={`/drivers/${id}`}> <button class="button" variant="primary"> See Profile </button> </Link>{' '} */}
         </Card.Body>
       </Card>
     </Col>

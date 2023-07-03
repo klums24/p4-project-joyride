@@ -36,9 +36,7 @@ function App() {
     fetch("/api/v1/cars")
     .then(response => response.json())
     .then(data => {
-      setCars(data)
-
-      
+      setCars(data)   
     })
 }, []) 
 
@@ -86,12 +84,12 @@ if (!currentDriver) {
   return (
   <>
   <header class="welcome-message">
-    >>>>>>>>>>>>>>>>>>>>>>>JOY RIDE>>>>>>>>>>>>>>>>>>>>>>>> 
+    JOYRIDE 
   </header>
   <navbar>
     {!showLoginForm ? <LoginForm saveDriver={saveDriver} handleToggleForm={handleToggleForm}/> : <NewUserForm saveDriver={saveDriver} handleToggleForm={handleToggleForm}/>}
   </navbar>
-  <img src="https://wallpapercave.com/wp/wp7611213.jpg" alt="!"/>
+  <img class="main-page-image" src="https://wallpapercave.com/wp/wp7611213.jpg" alt="!"/>
   </>
   )
   }  
