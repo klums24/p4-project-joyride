@@ -133,8 +133,6 @@ class CarById(Resource):
 api.add_resource(CarById, "/cars/<int:id>")
 ```
 
-## Roadmap
-
 
 ## Contributing
 
