@@ -4,11 +4,10 @@ import { Switch, Route } from "react-router-dom";
 // import SignUpForm from "./SignUpForm";
 import NewUserForm from "./NewUserForm";
 import LoginForm from "./LoginForm";
-import LoggedIn from "./LoggedIn";
 import DriverCollection from "./DriverCollection";
 import DriverProfile from "./DriverProfile";
 import CarCollection from "./CarCollection";
-import CarCard from "./CarCard";
+
 
 function App() {
   
