@@ -25,7 +25,7 @@ class Car(db.Model, SerializerMixin):
     
     id=db.Column(db.Integer, primary_key=True)
     make = db.Column(db.String, nullable=False)
-    model = db.Column(db.Integer, nullable=False)
+    model = db.Column(db.String, nullable=False)
     year = db.Column(db.Integer, nullable=False)
     picture = db.Column(db.String, nullable=False)
     # trim = db.Column(db.String, nullable=False)  
